@@ -12,3 +12,8 @@ def index():
 	message = "Hello"
 	return render_template("index.html", message=message)
 
+
+@app.route('/test')
+# @login_required
+def test():
+	return render_template("template.html")
