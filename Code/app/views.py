@@ -13,7 +13,42 @@ def index():
 	return render_template("index.html", message=message)
 
 
-@app.route('/test')
-# @login_required
-def test():
-	return render_template("template.html")
+@app.route('/recommended-books')
+@login_required
+def recommended_books():
+	return render_template("recommended_books.html")
+
+
+@app.route('/contact')
+def contact():
+	return render_template("contact.html")
+
+
+@app.route('/about')
+def about():
+	return render_template("about.html")
+
+
+@app.route('/book-details')
+def book_details():
+	return render_template("book_details.html")
+
+
+@app.route('/register')
+def register():
+	return render_template("register.html")
+
+
+@app.route('/login')
+def login():
+	return render_template("login.html")
+
+
+@app.route('/my-profile')
+def my_profile():
+	return render_template("my_profile.html")
+
+
+@app.route('/search-results')
+def search_results():
+	return render_template("search_results.html")
