@@ -102,3 +102,6 @@ ENV/
 
 
 app/settings.py
+
+databases
+*.db
