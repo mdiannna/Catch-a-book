@@ -13,5 +13,12 @@ body {
 
     .text-bold{
         font-weight: bold;
-
+    }
+    .outline-glow
+    {
+        text-shadow: 4px 4px 4px #000000;
+    }
+    .text-bigger
+    {
+        font-size: 50px;
     }
