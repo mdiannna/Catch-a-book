@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
+<head>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -9,16 +9,17 @@
     <meta name="author" content="">
 
     {% block title %}
-      <title>Catch a book</title>
+        <title>Catch a book</title>
     {% endblock %}
-    
+
 
     <!-- Bootstrap Core CSS -->
     <link href="../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="../static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic"
+          rel="stylesheet" type="text/css">
     <link href="../static/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
 
     <!-- Custom CSS -->
@@ -33,55 +34,57 @@
     {% block styles %}
     {% endblock %}
 
-  </head>
+</head>
 
-  <body id="page-top">
-    <!-- Navigation -->
-     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-      <div class="container">
+<body id="page-top">
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
         <a class="navbar-brand" href="/">
-          <img src="http://placehold.it/300x60?text=Logo" width="150" height="30" alt="">
+            <img src="http://placehold.it/300x60?text=Logo" width="150" height="30" alt="">
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="/">Home
-                <span class="sr-only">(current)</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/about">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/contact">Contact</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/register">Register</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/login">Login</a>
-            </li>
-          </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/contact">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/register">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Login</a>
+                </li>
+            </ul>
         </div>
-      </div>
-    </nav>
+    </div>
+</nav>
 
 
-    {% block content %}
-    {% endblock %}
+{% block content %}
+{% endblock %}
 
-    <!-- Footer -->
-    <footer class="footer text-center">
-      <div class="container">
+<!-- Footer -->
+<footer class="footer text-center">
+    <div class="container">
         <ul class="list-inline mb-5">
 
             <li class="list-inline-item">
-              <a class="social-link rounded-circle text-white" href="https://github.com/mdiannna/Catch-a-book" target="_blank">
-                <i class="icon-social-github"></i>
-              </a>
+                <a class="social-link rounded-circle text-white" href="https://github.com/mdiannna/Catch-a-book"
+                   target="_blank">
+                    <i class="icon-social-github"></i>
+                </a>
             </li>
             <li class="list-inline-item">
                 <p class="text-muted small mb-0">Copyright &copy; Catch a Book 2018</p>
@@ -89,27 +92,27 @@
             </li>
         </ul>
 
-      </div>
-    </footer>
+    </div>
+</footer>
 
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded js-scroll-trigger" href="#page-top">
-      <i class="fa fa-angle-up"></i>
-    </a>
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded js-scroll-trigger" href="#page-top">
+    <i class="fa fa-angle-up"></i>
+</a>
 
 
-    {% block scripts %}
-      <!-- Bootstrap core JavaScript -->
-      <script src="../static/vendor/jquery/jquery.min.js"></script>
-      <script src="../static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+{% block scripts %}
+    <!-- Bootstrap core JavaScript -->
+    <script src="../static/vendor/jquery/jquery.min.js"></script>
+    <script src="../static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-      <!-- Plugin JavaScript -->
-      <script src="../static/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Plugin JavaScript -->
+    <script src="../static/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-      <!-- Custom scripts for this template -->
-      <script src="../static/js/stylish-portfolio.min.js"></script>
-    {% endblock %}
+    <!-- Custom scripts for this template -->
+    <script src="../static/js/stylish-portfolio.min.js"></script>
+{% endblock %}
 
-  </body>
+</body>
 
 </html>
