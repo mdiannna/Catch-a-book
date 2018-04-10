@@ -1,58 +1,63 @@
 {% extends "layout.html" %}
 {% block styles %}
-  <!-- Additional css here -->
+
 {% endblock %}
 
 {% block content %}
-  <div class="container">
-    <h1>Contact</h1>
-  </div>
+
+    <section class="content-section bg-primary text-center" id="contact-form">
     <div class="container">
-	<div class="row">
-      <div class="col-md-6 col-md-offset-3">
-        <div class="well well-sm">
-          <form class="form-horizontal" method="post">
-          <fieldset>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="well well-sm">
+                    <form class="form-horizontal" method="post">
+                        <fieldset>
 
-            <legend class="text-center">Contactează-ne</legend>
+                            <legend class="text-center text-bold">Contactează-ne</legend>
 
-            <!-- Name input-->
-            <div class="form-group">
-              <label class="col-md-3 control-label" for="name">Nume</label>
-              <div class="col-md-9">
-                <input id="name" name="NUME" type="text" placeholder="Nume și prenume" class="form-control">
-              </div>
+                            <!-- Name input-->
+                            <div class="form-group">
+                                <label class="col-md-3 text-black" for="name">Nume</label>
+                                <div class="col-md-9">
+                                    <input id="name" name="Nume" type="text" placeholder="Nume și prenume" class="form-control">
+                                </div>
+                            </div>
+
+                            <!-- Email input-->
+                            <div class="form-group">
+                                <label class="col-md-3 text-black" for="email">Email</label>
+                                <div class="col-md-9">
+                                    <input id="email" name="email" type="text" placeholder="Email" class="form-control">
+                                </div>
+                            </div>
+
+                            <!-- Message body -->
+                            <div class="form-group">
+                                <label class="col-md-3 text-black" for="message">Mesaj</label>
+                                <div class="col-md-9">
+                                    <textarea class="form-control" id="message" name="message" placeholder="Introduceți mesajul aici..." rows="5"></textarea>
+                                </div>
+                            </div>
+
+                            <!-- Form actions -->
+                            <div class="form-group">
+                                <div class="col-md-12 text-right">
+                                    <button type="submit" class="btn btn-primary btn-lg">TRIMITE</button>
+                                </div>
+                            </div>
+
+                        </fieldset>
+                    </form>
+                </div>
             </div>
 
-            <!-- Email input-->
-            <div class="form-group">
-              <label class="col-md-3 control-label" for="email">Email</label>
-              <div class="col-md-9">
-                <input id="email" name="email" type="text" placeholder="Email" class="form-control">
-              </div>
+            <div class="col-md-6">
+                <img src="../static/img/BooksContactForm.jpg" alt="Books" height="400" width="500">
             </div>
 
-            <!-- Message body -->
-            <div class="form-group">
-              <label class="col-md-3 control-label" for="message">Mesaj</label>
-              <div class="col-md-9">
-                <textarea class="form-control" id="message" name="message" placeholder="Introduceți mesajul aici..." rows="5"></textarea>
-              </div>
-            </div>
-
-            <!-- Form actions -->
-            <div class="form-group">
-              <div class="col-md-12 text-right">
-                <button type="submit" class="btn btn-primary btn-lg">TRIMITE</button>
-              </div>
-            </div>
-
-          </fieldset>
-          </form>
         </div>
-      </div>
-	</div>
-</div>
+    </div>
+    </section>
 
 {% endblock %}
 
