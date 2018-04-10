@@ -7,3 +7,11 @@ body {
     padding-top: 56px;
   }
 }
+    .text-black{
+        color: black; !important;
+    }
+
+    .text-bold{
+        font-weight: bold;
+
+    }
