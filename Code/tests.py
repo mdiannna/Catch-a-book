@@ -1,8 +1,10 @@
 #!flask/bin/python
-# documentation:
+# useful resources:
 # https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-vii-unit-testing-legacy
 # http://www.patricksoftwareblog.com/unit-testing-a-flask-application/
 # https://docs.python.org/2/library/unittest.html
+# https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html
+# https://damyanon.net/post/flask-series-testing/
 
 import os
 import unittest
