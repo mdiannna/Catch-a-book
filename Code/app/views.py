@@ -14,6 +14,19 @@ def addInitialLibraries():
 	db.session.commit()
 
 def moveBooksDataFromTables():
+	carturesti_books = BooksCarturesti.query.all()
+	for book in carturesti_books:
+		new_book = Book(title=book.title, 
+			author=book.author,
+			isbn=book.isbn,
+			link=book.link,
+			editura=book.editura,
+			price=book.price,
+			# img=book.img,
+			library_id=1) 
+		db.session.add(new_book)
+		db.session.commit()
+
 	librarie_net_books = LibrarieNet.query.all()
 	for book in librarie_net_books:
 		new_book = Book(title=book.title, 
@@ -29,12 +42,19 @@ def moveBooksDataFromTables():
 
 	# print carturesti_books[0].title
 
+# TODO: delete after finishing with the database
+# @app.route('/db')
+# def index():
+# 	message = "Hello"
+# 	addInitialLibraries()
+# 	moveBooksDataFromTables()
+#	# return render_template("index.html", message=message)
+
+
 @app.route('/')
 # @login_required
 def index():
 	message = "Hello"
-	# addInitialLibraries()
-	# moveBooksDataFromTables()
 	return render_template("index.html", message=message)
 
 
