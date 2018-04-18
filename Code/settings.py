@@ -1,1 +1,1 @@
-db_path ="sqlite:////home/mdiannna/Catch-a-book/database.db"
+db_path ="sqlite:////home/mdiannna/Catch-a-book/Code/database.db"
