@@ -59,16 +59,16 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-4">
             <li class="nav-item">
-              <a class="nav-link text-bold" href="/about">About</a>
+              <a class="nav-link text-bold" href="/about">Despre</a>
             </li>
             <li class="nav-item">
               <a class="nav-link text-bold" href="/contact">Contact</a>
             </li>
             <li class="nav-item text-bold">
-               <button class="nav-link" onclick="document.getElementById('register_form').style.display='block'" style="width:auto;">Register</button>
+               <button class="nav-link" onclick="document.getElementById('register_form').style.display='block'" style="width:auto;">Înregistrare</button>
             </li>
             <li class="nav-item text-bold">
-              <button class="nav-link" onclick="document.getElementById('login_form').style.display='block'" style="width:auto;">Login</button>
+              <button class="nav-link" onclick="document.getElementById('login_form').style.display='block'" style="width:auto;">Autentificare</button>
             </li>
           </ul>
         </div>
@@ -85,22 +85,29 @@
     <div id="register_form" class="modal">
         <form class="modal-content animate" action="/action_page.php">
             <div class="container">
-                <label for="uname"><b>Username</b></label>
-                <input type="text" placeholder="Enter Username" name="username" required>
 
-                <label for="psw"><b>Password</b></label>
-                <input type="password" placeholder="Enter Password" name="password" required>
+                <label for="nume"><b>Nume</b></label>
+                <input type="text" placeholder="Introduceți numele" name="nume" required>
 
-                <label for="psw"><b>Confirm Password</b></label>
-                <input type="password" placeholder="Confirm Password" name="confirmpassword" required>
+                <label for="prenume"><b>Prenume</b></label>
+                <input type="text" placeholder="Introduceți Prenumele" name="prenume" required>
 
-                <button type="submit">Register</button>
+                <label for="email"><b>Email</b></label>
+                <input type="text" placeholder="Introduceți email-ul" name="email" required>
+
+                <label for="parola"><b>Parolă</b></label>
+                <input type="password" placeholder="Introduceți Parola" name="parola" required>
+
+                <label for="confirmpassword"><b>Confirmare Parolă</b></label>
+                <input type="password" placeholder="Confirmă Parola" name="confirmpassword" required>
+
+                <button type="submit">Înregistrare</button>
                 <label>
-                    <input type="checkbox" checked="checked" name="remember"> Remember me
+                    <input type="checkbox" checked="checked" name="remember"> Păstrează-mă autentificat
                 </label>
             </div>
             <div class="container">
-                <button type="button" onclick="document.getElementById('register_form').style.display='none'" class="cancelbtn">Cancel</button>
+                <button type="button" onclick="document.getElementById('register_form').style.display='none'" class="cancelbtn">Anulare</button>
             </div>
         </form>
     </div>
@@ -111,18 +118,18 @@
     <div id="login_form" class="modal">
         <form class="modal-content animate" action="/action_page.php">
             <div class="container">
-                <label for="uname"><b>Username</b></label>
-                <input type="text" placeholder="Enter Username" name="username" required>
+                <label for="email"><b>Email</b></label>
+                <input type="text" placeholder="Introduceți Email-ul" name="email" required>
 
-                <label for="psw"><b>Password</b></label>
-                <input type="password" placeholder="Enter Password" name="password" required>
+                <label for="parola"><b>Parolă</b></label>
+                <input type="password" placeholder="Introduceți Parola" name="parola" required>
 
-                <button type="submit">Login</button>
+                <button type="submit">Autentificare</button>
                 <label>
-                    <input type="checkbox" checked="checked" name="remember"> Remember me </label>
+                    <input type="checkbox" checked="checked" name="remember"> Păstrează-mă autentificat </label>
             </div>
             <div class="container">
-                <button type="button" onclick="document.getElementById('login_form').style.display='none'" class="cancelbtn">Cancel</button>
+                <button type="button" onclick="document.getElementById('login_form').style.display='none'" class="cancelbtn">Anulare</button>
                 <span class="psw">Forgot <a href="#">password</a>?</span>
             </div>
         </form>
