@@ -79,16 +79,6 @@ def book_details():
 	return render_template("book_details.html")
 
 
-@app.route('/register')
-def register():
-	return render_template("register.html")
-
-
-@app.route('/login')
-def login():
-	return render_template("login.html")
-
-
 @app.route('/my-profile')
 def my_profile():
 	return render_template("my_profile.html")

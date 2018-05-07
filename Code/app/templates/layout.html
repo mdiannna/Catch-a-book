@@ -65,7 +65,7 @@
               <a class="nav-link text-bold" href="/contact">Contact</a>
             </li>
             <li class="nav-item text-bold">
-              <a class="nav-link" href="/register">Register</a>
+               <button class="nav-link" onclick="document.getElementById('register_form').style.display='block'" style="width:auto;">Register</button>
             </li>
             <li class="nav-item text-bold">
               <button class="nav-link" onclick="document.getElementById('login_form').style.display='block'" style="width:auto;">Login</button>
@@ -80,28 +80,50 @@
     {% endblock %}
 
 
-    <div id="login_form" class="modal">
 
+    <!-- Register Form -->
+    <div id="register_form" class="modal">
         <form class="modal-content animate" action="/action_page.php">
-
             <div class="container">
                 <label for="uname"><b>Username</b></label>
-                <input type="text" placeholder="Enter Username" name="uname" required>
+                <input type="text" placeholder="Enter Username" name="username" required>
 
                 <label for="psw"><b>Password</b></label>
-                <input type="password" placeholder="Enter Password" name="psw" required>
+                <input type="password" placeholder="Enter Password" name="password" required>
 
-                <button type="submit">Login</button>
+                <label for="psw"><b>Confirm Password</b></label>
+                <input type="password" placeholder="Confirm Password" name="confirmpassword" required>
+
+                <button type="submit">Register</button>
                 <label>
                     <input type="checkbox" checked="checked" name="remember"> Remember me
                 </label>
             </div>
+            <div class="container">
+                <button type="button" onclick="document.getElementById('register_form').style.display='none'" class="cancelbtn">Cancel</button>
+            </div>
+        </form>
+    </div>
 
-            <div class="container" style="background-color:#f1f1f1">
-                <button type="button" onclick="document.getElementById('login_form').style.display='none'" class="cancelbtn">
-                    Cancel
-                </button>
-                <span class="psw">Forgot <a href="#">password?</a></span>
+
+
+    <!-- Login Form -->
+    <div id="login_form" class="modal">
+        <form class="modal-content animate" action="/action_page.php">
+            <div class="container">
+                <label for="uname"><b>Username</b></label>
+                <input type="text" placeholder="Enter Username" name="username" required>
+
+                <label for="psw"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="password" required>
+
+                <button type="submit">Login</button>
+                <label>
+                    <input type="checkbox" checked="checked" name="remember"> Remember me </label>
+            </div>
+            <div class="container">
+                <button type="button" onclick="document.getElementById('login_form').style.display='none'" class="cancelbtn">Cancel</button>
+                <span class="psw">Forgot <a href="#">password</a>?</span>
             </div>
         </form>
     </div>
@@ -125,6 +147,8 @@
 
       </div>
     </footer>
+
+
 
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded js-scroll-trigger" href="#page-top">
