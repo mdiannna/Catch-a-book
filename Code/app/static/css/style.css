@@ -1,6 +1,5 @@
 .text-black {
     color: black;
-!important;
 }
 
 .text-bold {
@@ -20,4 +19,8 @@
 }
 .navbar-culoare {
     background-color: saddlebrown;
+}
+
+body {
+	margin-top: 40px;
 }

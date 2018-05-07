@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block styles %}
+  <!-- Additional css here -->
+{% endblock %}
+
+{% block content %}
+<div class="container">
+	<h1>Instrucțiuni de utilizare </h1>
+
+	<div class="row">
+		<div class="col-lg-8 col-lg-offset-2 text-center">
+			
+			<br><br>
+		</div>
+	</div>
+
+	<div class="row">
+		<p>Pentru a căuta o carte, cu ajutorul unei poze, urmează pașii de mai jos:</p>
+		<ol>
+			<li>Gasește ISBN-ul cărții (de obicei, pe ultima pagină sau pe ultima copertă)</li>
+			<li>Fă o poză la codul ISBN</li>
+			<li>Fă crop pozei, ca în exemplul de mai jos</li>
+			<br>
+			<div class="row">
+				<div class="col-md-5">
+					<img src="../static/img/isbn_example/isbn_example.jpg" class="img-responsive img thumbnail">
+				</div>
+			</div>
+			<li>Apasă pe butonul "Upload poză ISBN" de pe pagina principală a website-ului Book Lovers</li>
+			<li>Selectează poza respectivă</li>
+			<li>Apasă butonul "Caută cartea"</li>
+			<li>Vezi lista de cărți :) </li>
+		</ol>
+	</div>
+</div>
+{% endblock %}
+

@@ -1,6 +1,5 @@
 {% extends "layout.html" %}
 {% block styles %}
-  <!-- Additional css here -->
 {% endblock %}
 
 {% block content %}
@@ -11,7 +10,37 @@
         <h3 class="mb-5 text-white outline-glow">
           <em>{{message}}</em>
         </h3>
-        <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Caută o carte</a>
+         <form method="post" class ="form-inline animated flipInX container" enctype = "multipart/form-data">
+
+<input type="submit" value="Caută cartea" class="btn btn-primary btn-xl js-scroll-trigger" id="cauta" style="display: none;" >
+        
+                  <!-- <div class="row"> -->
+                    <label class="page-scroll btn btn-xl" id="labelUpload">
+                      <input type="file" class=" fileinput" name="file" id="fileToUpload" style="display: none" onclick="changeLabel();">
+                      <span id="uploadButtonName">Upload poză ISBN</span>
+                    </label>
+                  <!-- </div>   -->
+
+                  <!-- <div class="row margin-top-20px" id="manualISBN"> -->
+                    <div class="form-group">
+                <label>sau scrie ISBN-ul aici...:</label>
+                <input type="text" class="form-control" id="manualISBNinput" name="manualISBNinput"  onChange="showSearchBtnIfText()" onfocus="showSearchBtnIfText()">
+            </div>  
+                  <!-- </div> -->
+                  
+
+                  <!-- <div class="row margin-top-20px" > -->
+                           
+                  <!-- </div> -->
+                    <!-- <br>  Space between buttons -->
+                    <!-- <div class="row"> -->
+                          <!--must be just name of section in href for effect -->
+                        <a class="page-scroll btn btn-instructiuni" href="/instructions">
+                            <h6>Instrucțiuni de utilizare</h6>
+                        </a>
+                    <!-- </div> -->
+
+               </form>
       </div>
       <div class="overlay"></div>
     </header>
@@ -156,3 +185,9 @@
     </section>
 
 {% endblock %}
+
+{% block scripts %}
+  <!-- Additional scripts here -->
+  <script src="../static/js/index.js"></script>
+{% endblock %}
+
