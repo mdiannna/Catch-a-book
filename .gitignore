@@ -105,3 +105,6 @@ app/settings.py
 
 databases
 *.db
+
+/.idea/
+.idea/workspace.xml
