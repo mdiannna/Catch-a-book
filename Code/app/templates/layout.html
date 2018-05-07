@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     {% block title %}
       <title>Catch a book</title>
@@ -26,6 +27,7 @@
     <link href="../static/css/stylish-portfolio.min.css" rel="stylesheet">
     <link href="../static/css/style.css" rel="stylesheet">
 
+
     <!-- Custom Contact -->
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
@@ -33,6 +35,11 @@
 
 
     <link href="../static/css/template.css" rel="stylesheet">
+
+
+    <!-- Custom Login Form -->
+    <link href="../static/css/login_form.css" rel="stylesheet">
+
 
     {% block styles %}
     {% endblock %}
@@ -66,7 +73,7 @@
               <a class="nav-link" href="/register">Register</a>
             </li>
             <li class="nav-item text-bold">
-              <a class="nav-link" href="/login">Login</a>
+              <button onclick="document.getElementById('login_form').style.display='block'" style="width:auto;">Login</button>
             </li>
           </ul>
         </div>
@@ -76,6 +83,34 @@
 
     {% block content %}
     {% endblock %}
+
+
+    <div id="login_form" class="modal">
+
+        <form class="modal-content animate" action="/action_page.php">
+
+            <div class="container">
+                <label for="uname"><b>Username</b></label>
+                <input type="text" placeholder="Enter Username" name="uname" required>
+
+                <label for="psw"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="psw" required>
+
+                <button type="submit">Login</button>
+                <label>
+                    <input type="checkbox" checked="checked" name="remember"> Remember me
+                </label>
+            </div>
+
+            <div class="container" style="background-color:#f1f1f1">
+                <button type="button" onclick="document.getElementById('login_form').style.display='none'" class="cancelbtn">
+                    Cancel
+                </button>
+                <span class="psw">Forgot <a href="#">password?</a></span>
+            </div>
+        </form>
+    </div>
+
 
     <!-- Footer -->
     <footer class="footer text-center">
@@ -101,8 +136,6 @@
       <i class="fa fa-angle-up"></i>
     </a>
 
-
-   
       <!-- Bootstrap core JavaScript -->
       <script src="../static/vendor/jquery/jquery.min.js"></script>
       <script src="../static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -112,6 +145,9 @@
 
       <!-- Custom scripts for this template -->
       <script src="../static/js/stylish-portfolio.min.js"></script>
+      <script src="../static/js/login_form.js"></script>
+
+
     {% block scripts %}
     {% endblock %}
 
