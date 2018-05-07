@@ -5,60 +5,65 @@
 {% block content %}
     <!-- Header -->
     <header class="masthead d-flex">
-      <div class="container text-center my-auto">
-        <h1 class="mb-1 text-white outline-glow">Catch-a-Book</h1>
+        <div class="container text-center my-auto">
+            <h1 class="mb-1 text-white outline-glow">Catch-a-Book</h1>
+            <!--
         <h3 class="mb-5 text-white outline-glow">
           <em>{{message}}</em>
         </h3>
-         <form method="post" class ="form-inline animated flipInX container" enctype = "multipart/form-data">
+        -->
 
-<input type="submit" value="Caută cartea" class="btn btn-primary btn-xl js-scroll-trigger" id="cauta" style="display: none;" >
-        
-                  <!-- <div class="row"> -->
-                    <label class="page-scroll btn btn-xl" id="labelUpload">
-                      <input type="file" class=" fileinput" name="file" id="fileToUpload" style="display: none" onclick="changeLabel();">
-                      <span id="uploadButtonName">Upload poză ISBN</span>
-                    </label>
-                  <!-- </div>   -->
+            <form method="post" class="form-inline animated flipInX container" enctype="multipart/form-data">
+                <input type="submit" value="Caută cartea" class="btn btn-primary btn-xl js-scroll-trigger" id="cauta"
+                       style="display: none;">
 
-                  <!-- <div class="row margin-top-20px" id="manualISBN"> -->
-                    <div class="form-group">
-                <label>sau scrie ISBN-ul aici...:</label>
-                <input type="text" class="form-control" id="manualISBNinput" name="manualISBNinput"  onChange="showSearchBtnIfText()" onfocus="showSearchBtnIfText()">
-            </div>  
-                  <!-- </div> -->
-                  
+                <!-- <div class="row"> -->
+                <label class="page-scroll btn btn-xl" id="labelUpload">
+                    <input type="file" class=" fileinput" name="file" id="fileToUpload" style="display: none"
+                           onclick="changeLabel();">
+                    <span id="uploadButtonName">Upload poză ISBN</span>
+                </label>
+                <!-- </div>   -->
 
-                  <!-- <div class="row margin-top-20px" > -->
-                           
-                  <!-- </div> -->
-                    <!-- <br>  Space between buttons -->
-                    <!-- <div class="row"> -->
-                          <!--must be just name of section in href for effect -->
-                        <a class="page-scroll btn btn-instructiuni" href="/instructions">
-                            <h6>Instrucțiuni de utilizare</h6>
-                        </a>
-                    <!-- </div> -->
+                <!-- <div class="row margin-top-20px" id="manualISBN"> -->
+                <div class="form-group">
+                    <label>sau scrie ISBN-ul aici...:</label>
+                    <input type="text" class="form-control" id="manualISBNinput" name="manualISBNinput"
+                           onChange="showSearchBtnIfText()" onfocus="showSearchBtnIfText()">
+                </div>
+                <!-- </div> -->
 
-               </form>
-      </div>
-      <div class="overlay"></div>
+
+                <!-- <div class="row margin-top-20px" > -->
+
+                <!-- </div> -->
+                <!-- <br>  Space between buttons -->
+                <!-- <div class="row"> -->
+                <!--must be just name of section in href for effect -->
+                <a class="page-scroll btn btn-instructiuni" href="/instructions">
+                    <h6>Instrucțiuni de utilizare</h6>
+                </a>
+                <!-- </div> -->
+
+            </form>
+        </div>
+        <div class="overlay"></div>
     </header>
 
     <!-- Call to Action -->
     <section class="content-section bg-primary text-white">
-      <div class="container text-center">
-        <h2 class="mb-4">The buttons below are impossible to resist...</h2>
-        <a href="#" class="btn btn-xl btn-light mr-4">Click Me!</a>
-        <a href="#" class="btn btn-xl btn-dark">Look at Me!</a>
-      </div>
+        <div class="container text-center">
+            <h2 class="mb-4">  Instrucțiuni de utilizare ISBN  </h2>
+            <a href="#" class="btn btn-xl btn-light mr-4">Click Me!</a>
+            <a href="#" class="btn btn-xl btn-dark">Look at Me!</a>
+        </div>
     </section>
 
 {% endblock %}
 
 {% block scripts %}
-  <!-- Additional scripts here -->
-  <script src="../static/js/index.js"></script>
+    <!-- Additional scripts here -->
+    <script src="../static/js/index.js"></script>
 
 {% endblock %}
 
