@@ -29,3 +29,17 @@ body {
 {
     margin-left: 550px;
 }
+
+.btn-instructiuni{
+    margin-top: 20px;
+    margin-left: 10px;
+    padding: 2px;
+    border-radius: 5px;
+}
+
+.btn-cautare{
+    margin-top: 20px;
+    margin-right: 10px;
+    padding: 7px;
+
+}
