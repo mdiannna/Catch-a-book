@@ -51,11 +51,29 @@ def moveBooksDataFromTables():
 #   moveBooksDataFromTables()
 #   # return render_template("index.html", message=message)
 
-def registerUser(username, email, password):
-    user = User(username=username, email=email, password=password)
-    db.session.add(user)
-    db.session.commit()
+# def registerUser(username, email, password):
+#     user = User(username=username, email=email, password=password)
+#     db.session.add(user)
+#     db.session.commit()
+#     print("User registered")
+
+
+@app.route('/register/post', methods = ['GET', 'POST'])
+def registerUser():
+    # print data
+    print request
+    print request.data
+    print request.args
+    print request.values
+    # data=request.data
+    # username = data.username
+    # email=data.email
+    # password=data.password
+    # user = User(username=username, email=email, password=password)
+    # db.session.add(user)
+    # db.session.commit()
     print("User registered")
+    return redirect('/')
 
 
 @app.route('/', methods = ['GET', 'POST'])
