@@ -5,8 +5,8 @@ from flask.ext.login import login_user, login_required, logout_user, current_use
 from werkzeug.security import generate_password_hash, check_password_hash
 from app.models import User, Library, Book, BooksCarturesti, LibrarieNet, Librarie_Min
 import re
-from forms import RegistrationForm
-
+from app.forms import RegistrationForm
+# import requests
 
 def addInitialLibraries():
     carturesti = Library(id=1, name='Carturesti')
@@ -58,6 +58,7 @@ def registerUser(username, email, password):
     db.session.commit()
     print("User registered")
 
+
 @app.route('/', methods = ['GET', 'POST'])
 # @login_required
 def index():
@@ -69,10 +70,14 @@ def index():
 
     FILENAME = "ISBN1.jpg"
 
-    registerform = RegistrationForm(request.form)
-    if request.method == 'POST' and registerform.validate():
-        registerUser(registerform.username.data, registerform.email.data, registerform.password.data)
-        return render_template("index.html", message=message, registerform=registerform)
+#     registerform = RegistrationForm(request.form)
+#     if request.method == 'POST' and registerform.validate():
+
+# # requests.post('http://httpbin.org/post', data = {'key':'value'})
+
+
+#         registerUser(registerform.username.data, registerform.email.data, registerform.password.data)
+#         return render_template("index.html", message=message, registerform=registerform)
 
 
     if request.method == 'POST':
@@ -100,7 +105,8 @@ def index():
             status = 'file uploaded successfully'
             return redirect('/ocr_ISBN/' + str(FILENAME))
 
-    return render_template("index.html", message=message, registerform=registerform)
+    # return render_template("index.html", message=message, registerform=registerform)
+    return render_template("index.html", message=message)
 
 
 # @app.route('/register', methods=['GET', 'POST'])

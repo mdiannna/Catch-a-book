@@ -32,7 +32,7 @@
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <link href="../static/css/template.css" rel="stylesheet">
 
@@ -97,33 +97,30 @@
     <!-- Register Form -->
     <div id="register_form" class="modal">
         <form class="modal-content animate add-top-space" action=" " method="post">
-          {{ registerform.hidden_tag() }}
+
             <div class="container-form">
-<!-- 
+
                 <label for="nume"><b>Nume</b></label>
                 <input type="text" placeholder="Introduceți numele" name="nume" required>
 
-            -->     <!-- <label for="prenume"><b>Prenume</b></label> -->
-                <!-- <input type="text" placeholder="Introduceți Prenumele" name="prenume" required> -->
+                <label for="prenume"><b>Prenume</b></label>
+                <input type="text" placeholder="Introduceți Prenumele" name="prenume" required>
+                
                 <label for="username"><b>Username</b></label>
 
-              {{ registerform.username }}
 
 
                 <label for="email"><b>Email</b></label>
-              {{ registerform.email }}
 
-                <!-- <input type="text" placeholder="Introduceți email-ul" name="email" required> -->
+                <input type="text" placeholder="Introduceți email-ul" name="email" required>
 
                 <label for="parola"><b>Parolă</b></label>
-                <!-- <input type="password" placeholder="Introduceți Parola" name="parola" required> -->
-              {{ registerform.password }}
+                <input type="password" placeholder="Introduceți Parola" name="parola" required>
+              
 
                 <label for="confirmpassword"><b>Confirmare Parolă</b></label>
-                <!-- <input type="password" placeholder="Confirmă Parola" name="confirmpassword" required> -->
+                <input type="password" placeholder="Confirmă Parola" name="confirmpassword" required>
                 <!-- <input type="password" placeholder="Introduceți Parola" name="parola" required> -->
-
-              {{ registerform.confirm }}
 
                 <button type="submit">Înregistrare</button>
                 <label>
@@ -197,7 +194,15 @@
       <script src="../static/js/stylish-portfolio.min.js"></script>
       <script src="../static/js/login_form.js"></script>
 
-
+      <script>
+$(document).ready(function(){
+    $("register").click(function(){
+        $.ajax({url: "/register", success: function(result){
+            $("#div1").html(result);
+        }});
+    });
+});
+</script>
     {% block scripts %}
     {% endblock %}
 
