@@ -1,11 +1,193 @@
 {% extends "layout.html" %}
 {% block styles %}
-  <!-- Additional css here -->
+    <!-- Additional css here -->
 {% endblock %}
 
 {% block content %}
-  <div class="container">
-    <h1>Despre</h1>
-  </div>
+    <div class="container">
+        <h1>Despre</h1>
+
+        <section id="services" class="bg-dark-gray">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <h2 class="section-heading wow fadeIn animated" data-wow-duration="1500ms">Despre</h2>
+                        <div class="devider"><i class="fa fa-heart-o fa-lg"></i></div>
+                        <br><br><br>
+                    </div>
+
+                    <div class="row text-center wow fadeInLeft animated" data-wow-duration="500ms">
+
+                        <!-- Descriere - Sugestie de lectura-->
+                        <div class="col-md-4 wow fadeInRight" data-wow-duration="500ms" data-wow-delay="900ms">
+                    <span class="fa-stack fa-4x">
+                        <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                        <i class="fa fa-book fa-stack-1x fa-inverse"></i>
+                    </span>
+                            <h4 class="service-heading">Sugestie de lectura</h4>
+                            <p class="text-spacing">Dacă ți-a plăcut un autor, dar nu știi unde să cauți alte titluri
+                                ale
+                                acestuia, poți apela oricând la site-ul nostru. Dacă introduci codul ISBN al cărții
+                                tale, noi
+                                iți vom sugera alte titluri.
+                            </p>
+                        </div>
+
+                        <!-- Descriere - Responsive Desigh-->
+                        <div class="col-md-4 wow fadeInUp" data-wow-duration="500ms" data-wow-delay="500ms">
+                    <span class="fa-stack fa-4x">
+                        <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                        <i class="fa fa-desktop fa-stack-1x fa-inverse"></i>
+                    </span>
+                            <span class="fa-stack fa-4x">
+                        <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                        <i class="fa fa-mobile fa-stack-1x fa-inverse"></i>
+                    </span>
+                            <h4 class="service-heading">Responsive Design</h4>
+                            <p class="text-muted">Designul eficientizează utilizarea site-ului, astfel te vei bucura din
+                                plin de
+                                serviciile oferite, atât pe laptop cât și pe mobil.
+                            </p>
+                        </div>
+
+                        <!-- Descriere - Online-->
+                        <div class="col-md-4">
+                    <span class="fa-stack fa-4x">
+                        <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                        <i class="fa fa-internet-explorer fa-stack-1x fa-inverse"></i>
+                    </span>
+                            <h4 class="service-heading">Online</h4>
+                            <p class="text-muted">Book Lovers facilitează căutarea unei cărți cu ajutorul codului ISBN.
+                                Totodată,
+                                poți alege prețul cel mai bun pentru cartea dorită.
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="about_project" class="bg-light-gray">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <h2 class="section-heading wow fadeIn animated" data-wow-duration="1500ms">Proiectul nostru</h2>
+                        <br><br>
+                    </div>
+                    <div class="col-lg-12 text-center">
+                        <div class="text-spacing">
+                            <h3 class="section-subheading text-spacing">
+                                Aplicația Web "Book Lovers" a fost realizată din pasiune pentru lectură. Scopul ei este
+                                de a
+                                încuraja tinerii să citească, prin simplul fapt că iși vor găsi mult mai ușor cartea
+                                dorită. Cu
+                                o simplă scanare a codului ISBN, utilizatorul poate afla detalii despre acea carte, cât
+                                și
+                                prețul cel mai convenabil și magazinul de la care o poate cumpăra. Dacă unui cititor i-a
+                                plăcut
+                                foarte mult o carte a unui anumit autor, el poate "scana" acea carte, iar aplicația
+                                noastră îi
+                                va sugera imediat alte titluri ale aceluiași autor, la cel mai bun preț.
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3 col-sm-6 col-xs-12 text-center wow fadeInUp animated"
+                         data-wow-duration="500ms">
+                        <div class="counters-item">
+                            <i class="fa fa-book fa-3x"></i>
+                            <h4>peste 20.000</h4>
+                            <p>Cărți</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12 text-center wow fadeInUp animated" data-wow-duration="500ms"
+                         data-wow-delay="300ms">
+                        <div class="counters-item">
+                            <i class="fa fa-users fa-3x"></i>
+                            <h4>peste 6.000</h4>
+                            <p>Autori</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12 text-center wow fadeInUp animated" data-wow-duration="500ms"
+                         data-wow-delay="600ms">
+                        <div class="counters-item">
+                            <i class="fa fa-building fa-3x"></i>
+                            <h4>2 mari</h4>
+                            <p>Librării</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12 text-center wow fadeInUp animated" data-wow-duration="500ms"
+                         data-wow-delay="900ms">
+                        <div class="counters-item">
+                            <i class="fa fa-print fa-3x"></i>
+                            <h4>peste 500</h4>
+                            <p>Edituri</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Pagina: Echipa -->
+        <section id="team" class="bg-dark-gray">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <h2 class="section-heading wow fadeIn animated" data-wow-duration="1500ms">Echipa noastră</h2>
+                        <h3 class="section-subheading text-muted wow slideInLeft animated" data-wow-duration="1000ms">
+                            Creatorii Book Lovers și pasiunile lor</h3>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-3 wow fadeInUp animated" data-wow-duration="500ms">
+                        <div class="team-member">
+                            <img src="../static/img/team/andrei225x225.png" class="img-responsive img-circle" alt="">
+                            <h4>Diana, 20 ani</h4>
+                            <p class="text-muted">dansul și tenisul</p>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3 wow fadeInUp animated" data-wow-duration="500ms" data-wow-delay="300ms">
+                        <div class="team-member">
+                            <img src="../static/img/team/diana225x225.png" class="img-responsive img-circle" alt="">
+                            <h4>Diana, 19 ani</h4>
+                            <p class="text-muted">călătoria și muzica</p>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3 wow fadeInUp animated" data-wow-duration="500ms" data-wow-delay="600ms">
+                        <div class="team-member">
+                            <img src="../static/img/team/diana-maria225x225.png" class="img-responsive img-circle"
+                                 alt="">
+                            <h4>Tiberiu, 19 ani</h4>
+                            <p class="text-muted">înotul și mersul pe role</p>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3 wow fadeInUp animated" data-wow-duration="500ms" data-wow-delay="900ms">
+                        <div class="team-member">
+                            <img src="../static/img/team/stefan225x225.png" class="img-responsive img-circle" alt="">
+                            <h4>Miriam, 19 ani</h4>
+                            <p class="text-muted">patinajul și jocurile de societate</p>
+                        </div>
+                    </div>
+                </div> <!---->
+
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2 text-center">
+                        <p class="large text-muted">"Succesul se ascunde în ambiția de a nu renunța." – Marius Torok</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+    </div>
 {% endblock %}
 

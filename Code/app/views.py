@@ -6,7 +6,6 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from app.models import User, Library, Book, BooksCarturesti, LibrarieNet, Librarie_Min
 import re
 from app.forms import RegistrationForm
-# import requests
 
 def addInitialLibraries():
     carturesti = Library(id=1, name='Carturesti')
