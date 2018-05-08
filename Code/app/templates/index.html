@@ -41,7 +41,7 @@
                 <!-- <br>  Space between buttons -->
                 <!-- <div class="row"> -->
                 <!--must be just name of section in href for effect -->
-                <a class="page-scroll btn-dark btn-instructiuni" href="/instructions">
+                <a class="page-scroll btn-dark btn-instructiuni js-scroll-trigger" href="#instructions">
                     <h6>Instrucțiuni de utilizare</h6>
                 </a>
                 <!-- </div> -->
@@ -52,11 +52,31 @@
     </header>
 
     <!-- Call to Action -->
-    <section class="content-section bg-primary text-white">
-        <div class="container text-center">
+    <section id ="instructions" class="content-section bg-primary text-white">
+        <div class="container">
             <h2 class="mb-4"> Instrucțiuni de utilizare ISBN </h2>
-            <a href="#" class="btn btn-xl btn-light mr-4">Click Me!</a>
-            <a href="#" class="btn btn-xl btn-dark">Look at Me!</a>
+
+
+            <div class="row">
+                <p>Pentru a căuta o carte, cu ajutorul unei poze, urmează pașii de mai jos:</p>
+                <ol>
+                    <li>Gasește ISBN-ul cărții (de obicei, pe ultima pagină sau pe ultima copertă)</li>
+                    <li>Fă o poză la codul ISBN</li>
+                    <li>Fă crop pozei, ca în exemplul de mai jos</li>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-5">
+                            <img src="../static/img/isbn_example/isbn_example.jpg" class="img-responsive img thumbnail">
+                        </div>
+                    </div>
+                    <li>Apasă pe butonul "Upload poză ISBN" de pe pagina principală a website-ului Book Lovers</li>
+                    <li>Selectează poza respectivă</li>
+                    <li>Apasă butonul "Caută cartea"</li>
+                    <li>Vezi lista de cărți :)</li>
+                </ol>
+            </div>
+
+
         </div>
     </section>
 
