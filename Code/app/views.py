@@ -5,7 +5,7 @@ from flask.ext.login import login_user, login_required, logout_user, current_use
 from werkzeug.security import generate_password_hash, check_password_hash
 from app.models import User, Library, Book, BooksCarturesti, LibrarieNet, Librarie_Min
 import re
-from forms import RegistrationForm
+from app.forms import RegistrationForm
 
 
 def addInitialLibraries():
