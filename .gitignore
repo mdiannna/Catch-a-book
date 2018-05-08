@@ -106,7 +106,8 @@ Code/settings.py
 databases
 *.db
 
+.idea
 /.idea/
-.idea/workspace.xml
+/.idea/workspace.xml
 
 settings.py
