@@ -28,7 +28,6 @@ button {
 }
 
 span.psw {
-    float: right;
     padding-top: 16px;
 }
 
@@ -52,7 +51,7 @@ span.psw {
     background-color: #fefefe;
     margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
     border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
+    width: 40%; /* Could be more or less, depending on screen size */
 }
 
 /* The Close Button (x) */
@@ -98,3 +97,34 @@ span.psw {
     }
 }
 
+.container-form {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+@media (min-width: 576px) {
+  .container-form {
+    max-width: 540px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container-form {
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container-form {
+    max-width: 960px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container-form {
+    max-width: 1140px;
+  }
+}

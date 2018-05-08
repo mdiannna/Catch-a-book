@@ -49,3 +49,8 @@ body {
 .footer-padding{
     padding-top: 15px;
 }
+
+.add-top-space{
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
