@@ -41,7 +41,7 @@ def moveBooksDataFromTables():
         db.session.add(new_book)
         db.session.commit()
 
-    # #print carturesti_books[0].title
+    # ##print carturesti_books[0].title
 
 # TODO: delete after finishing with the database
 # @app.route('/db')
@@ -55,16 +55,16 @@ def moveBooksDataFromTables():
 #     user = User(username=username, email=email, password=password)
 #     db.session.add(user)
 #     db.session.commit()
-#     print("User registered")
+#     #print("User registered")
 
 
 @app.route('/register/post', methods = ['GET', 'POST'])
 def registerUser():
-    # print data
-    print request
-    print request.data
-    print request.args
-    print request.values
+    # #print data
+    #print request
+    #print request.data
+    #print request.args
+    #print request.values
     # data=request.data
     # username = data.username
     # email=data.email
@@ -72,7 +72,7 @@ def registerUser():
     # user = User(username=username, email=email, password=password)
     # db.session.add(user)
     # db.session.commit()
-    print("User registered")
+    #print("User registered")
     return redirect('/')
 
 
@@ -101,22 +101,22 @@ def index():
         #Read ISBN from input
         manual_ISBN=request.form.get('manualISBNinput', None)
         manual_ISBN=re.sub('[^0-9]','',manual_ISBN)
-        #print manual_ISBN
+        ##print manual_ISBN
         if  manual_ISBN!="":
             return redirect('/ocr_ISBN/' + manual_ISBN)
         #ISBN OCR if no input
-        #print "post here"
+        ##print "post here"
         f = request.files['file']
         if not allowed_file:
             error = 'Error! File type not allowed'
         elif not f:
             error = 'Error! Please choose file'
         if f and allowed_file(f.filename):
-            #print "current folder:"
-            #print os.path.dirname(os.path.abspath(__file__))
+            ##print "current folder:"
+            ##print os.path.dirname(os.path.abspath(__file__))
 
             FILE_PATH = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)),app.config['UPLOAD_FOLDER'], FILENAME))
-            #print FILE_PATH
+            ##print FILE_PATH
             f.save(FILE_PATH)
             # f.save(UPLOAD_FOLDER + FILENAME);
             status = 'file uploaded successfully'
@@ -149,11 +149,11 @@ def ocr_isbn(filename):
 
     FILENAME = "ISBN1.jpg"
     if request.method == 'POST':
-        #print "post here"
+        ##print "post here"
         #Read ISBN from input
         manual_ISBN=request.form.get('manualISBNinput2', None)
         manual_ISBN=re.sub('[^0-9]','',manual_ISBN)
-        #print manual_ISBN
+        ##print manual_ISBN
         if  manual_ISBN!="":
             return redirect('/ocr_ISBN/' + manual_ISBN)
 
@@ -165,11 +165,11 @@ def ocr_isbn(filename):
         elif not f:
             error = 'Error! Please choose file'
         if f and allowed_file(f.filename):
-            #print "current folder:"
-            #print os.path.dirname(os.path.abspath(__file__))
+            ##print "current folder:"
+            ##print os.path.dirname(os.path.abspath(__file__))
 
             FILE_PATH = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)),app.config['UPLOAD_FOLDER'], FILENAME))
-            #print FILE_PATH
+            ##print FILE_PATH
             f.save(FILE_PATH)
             # f.save(UPLOAD_FOLDER + FILENAME);
             status = 'file uploaded successfully'
@@ -188,15 +188,15 @@ def ocr_isbn(filename):
         error = "ISBN could not be detected properly"
 
     ISBN = str(ISBN)
-    #print "ISBN:", ISBN
+    ##print "ISBN:", ISBN
     # Price comparison
     good_price = None
     bad_price = None
     object_Carturesti = BooksCarturesti.query.filter(BooksCarturesti.isbn==ISBN).first()
     object_Librarie_Min = Librarie_Min.query.filter(Librarie_Min.isbn==ISBN).first()
     
-    #print object_Carturesti   
-    #print object_Librarie_Min
+    ##print object_Carturesti   
+    ##print object_Librarie_Min
 
     title = "No title found"
     author = "No author found"
