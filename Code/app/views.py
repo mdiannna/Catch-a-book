@@ -306,6 +306,3 @@ def my_profile():
     return render_template("my_profile.html")
 
 
-@app.route('/search-results')
-def search_results():
-    return render_template("search_results.html")
