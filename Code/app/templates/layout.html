@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
+<head>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine">
 
     {% block title %}
-      <title>Catch a book</title>
+        <title>Catch a book</title>
     {% endblock %}
 
 
@@ -19,7 +20,8 @@
 
     <!-- Custom Fonts -->
     <link href="../static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic"
+          rel="stylesheet" type="text/css">
     <link href="../static/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
 
 
@@ -32,7 +34,7 @@
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <link href="../static/css/template.css" rel="stylesheet">
 
@@ -44,131 +46,140 @@
     {% block styles %}
     {% endblock %}
 
-  </head>
+</head>
 
 {% with messages = get_flashed_messages(with_categories=true) %}
-  <!-- Categories: success (green), info (blue), warning (yellow), danger (red) -->
-  {% if messages %}
-    {% for category, message in messages %}
-      <div class="alert alert-{{ category }} alert-dismissible" role="alert">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      <!-- <strong>Title</strong> --> {{ message }}
-      </div>
-    {% endfor %}
-  {% endif %}
+    <!-- Categories: success (green), info (blue), warning (yellow), danger (red) -->
+    {% if messages %}
+        {% for category, message in messages %}
+            <div class="alert alert-{{ category }} alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <!-- <strong>Title</strong> --> {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
 {% endwith %}
 
-  <body id="page-top">
+<body id="page-top">
 
-    <!-- Navigation -->
-     <nav class="navbar-expand-lg bg-primary navbar-dark  fixed-top">
-      <div class="container">
-        <a class = "navbar-brand1" href="/">
-          <img src="../static/img/logo.png" width="265" height="45" alt="">
+<!-- Navigation -->
+<nav class="navbar-expand-lg bg-primary navbar-dark  fixed-top">
+    <div class="container">
+        <a class="navbar-brand1" href="/">
+            <img src="../static/img/logo.png" width="265" height="45" alt="">
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-4">
-            <li class="nav-item">
-              <a class="nav-link text-bold" href="/about">Despre</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-bold" href="/contact">Contact</a>
-            </li>
-            <li class="nav-item text-bold">
-               <button class="nav-link" onclick="document.getElementById('register_form').style.display='block'" style="width:auto;">Înregistrare</button>
-            </li>
-            <li class="nav-item text-bold">
-              <button class="nav-link" onclick="document.getElementById('login_form').style.display='block'" style="width:auto;">Autentificare</button>
-            </li>
-          </ul>
+            <ul class="navbar-nav ml-4">
+                <li class="nav-item">
+                    <a class="nav-link text-bold" href="/about">Despre</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-bold" href="/contact">Contact</a>
+                </li>
+                <li class="nav-item text-bold">
+                    <button class="nav-link" onclick="document.getElementById('register_form').style.display='block'"
+                            style="width:auto;">Înregistrare
+                    </button>
+                </li>
+                <li class="nav-item text-bold">
+                    <button class="nav-link" onclick="document.getElementById('login_form').style.display='block'"
+                            style="width:auto;">Autentificare
+                    </button>
+                </li>
+            </ul>
         </div>
-      </div>
-    </nav>
+    </div>
+</nav>
 
 
-    {% block content %}
-    {% endblock %}
+{% block content %}
+{% endblock %}
 
 
 <!-- TODO: ajax request -->
-    <!-- Register Form -->
-    <div id="register_form" class="modal">
-        <!-- <form class="modal-content animate add-top-space" action=" " method="post"> -->
-        <div class="modal-content animate add-top-space">
+<!-- Register Form -->
+<div id="register_form" class="modal">
+    <!-- <form class="modal-content animate add-top-space" action=" " method="post"> -->
+    <div class="modal-content animate add-top-space">
 
-            <div class="container-form">
+        <div class="container-form">
 
-                <label for="nume" id="name"><b>Nume</b></label>
-                <input type="text" placeholder="Introduceți numele" name="nume" required>
+            <label for="nume" id="name"><b>Nume</b></label>
+            <input type="text" placeholder="Introduceți numele" name="nume" required>
 
-                <label for="prenume"><b>Prenume</b></label>
-                <input type="text" placeholder="Introduceți Prenumele" name="prenume" required>
-                
-                <label for="username" id="username"><b>Username</b></label>
+            <label for="prenume"><b>Prenume</b></label>
+            <input type="text" placeholder="Introduceți Prenumele" name="prenume" required>
+
+            <label for="username" id="username"><b>Username</b></label>
 
 
+            <label for="email" id="email"><b>Email</b></label>
 
-                <label for="email" id="email"><b>Email</b></label>
+            <input type="text" placeholder="Introduceți email-ul" name="email" required>
 
-                <input type="text" placeholder="Introduceți email-ul" name="email" required>
+            <label for="parola" id="password"><b>Parolă</b></label>
+            <input type="password" placeholder="Introduceți Parola" name="parola" required>
 
-                <label for="parola" id="password"><b>Parolă</b></label>
-                <input type="password" placeholder="Introduceți Parola" name="parola" required>
-              
 
-                <label for="confirmpassword"><b>Confirmare Parolă</b></label>
-                <input type="password" placeholder="Confirmă Parola" name="confirmpassword" required>
-                <!-- <input type="password" placeholder="Introduceți Parola" name="parola" required> -->
+            <label for="confirmpassword"><b>Confirmare Parolă</b></label>
+            <input type="password" placeholder="Confirmă Parola" name="confirmpassword" required>
+            <!-- <input type="password" placeholder="Introduceți Parola" name="parola" required> -->
 
-                <!-- <button type="submit"  id="#register">Înregistrare</button> -->
-                <button id="register">Înregistrare</button>
-                <label>
-                    <input type="checkbox" checked="checked" name="remember"> Păstrează-mă autentificat
-                </label>
-            </div>
-            <div class="container">
-                <button type="button" onclick="document.getElementById('register_form').style.display='none'" class="cancelbtn">Anulare</button>
-            </div>
-        <!-- </form> -->
+            <!-- <button type="submit"  id="#register">Înregistrare</button> -->
+            <button id="register">Înregistrare</button>
+            <label>
+                <input type="checkbox" checked="checked" name="remember"> Păstrează-mă autentificat
+            </label>
         </div>
+        <div class="container">
+            <button type="button" onclick="document.getElementById('register_form').style.display='none'"
+                    class="cancelbtn">Anulare
+            </button>
+        </div>
+        <!-- </form> -->
     </div>
+</div>
 
 
+<!-- Login Form -->
+<div id="login_form" class="modal">
+    <form class="modal-content animate add-top-space" action=" ">
+        <div class="container-form">
+            <label for="email"><b>Email</b></label>
+            <input type="text" placeholder="Introduceți Email-ul" name="email" required>
 
-    <!-- Login Form -->
-    <div id="login_form" class="modal">
-        <form class="modal-content animate add-top-space" action=" ">
-            <div class="container-form">
-                <label for="email"><b>Email</b></label>
-                <input type="text" placeholder="Introduceți Email-ul" name="email" required>
+            <label for="parola"><b>Parolă</b></label>
+            <input type="password" placeholder="Introduceți Parola" name="parola" required>
 
-                <label for="parola"><b>Parolă</b></label>
-                <input type="password" placeholder="Introduceți Parola" name="parola" required>
-
-                <button type="submit">Autentificare</button>
-                <label>
-                    <input type="checkbox" checked="checked" name="remember"> Păstrează-mă autentificat </label>
-            </div>
-            <div class="container">
-                <button type="button" onclick="document.getElementById('login_form').style.display='none'" class="cancelbtn">Anulare</button>
-                <span class="psw">Forgot <a href="#">password</a>?</span>
-            </div>
-        </form>
-    </div>
+            <button type="submit">Autentificare</button>
+            <label>
+                <input type="checkbox" checked="checked" name="remember"> Păstrează-mă autentificat </label>
+        </div>
+        <div class="container">
+            <button type="button" onclick="document.getElementById('login_form').style.display='none'"
+                    class="cancelbtn">Anulare
+            </button>
+            <span class="psw">Forgot <a href="#">password</a>?</span>
+        </div>
+    </form>
+</div>
 
 
-    <!-- Footer -->
-    <footer class="footer text-center">
-      <div class="container footer-padding">
+<!-- Footer -->
+<footer class="footer text-center">
+    <div class="container footer-padding">
         <ul class="list-inline mb-5">
 
             <li class="list-inline-item">
-              <a class="social-link rounded-circle text-white" href="https://github.com/mdiannna/Catch-a-book" target="_blank">
-                <i class="icon-social-github"></i>
-              </a>
+                <a class="social-link rounded-circle text-white" href="https://github.com/mdiannna/Catch-a-book"
+                   target="_blank">
+                    <i class="icon-social-github"></i>
+                </a>
             </li>
             <li class="list-inline-item">
                 <p class="text-muted small mb-0">Copyright &copy; Catch a Book 2018</p>
@@ -176,55 +187,54 @@
             </li>
         </ul>
 
-      </div>
-    </footer>
+    </div>
+</footer>
 
 
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded js-scroll-trigger" href="#page-top">
+    <i class="fa fa-angle-up"></i>
+</a>
 
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded js-scroll-trigger" href="#page-top">
-      <i class="fa fa-angle-up"></i>
-    </a>
+<!-- Bootstrap core JavaScript -->
+<script src="../static/vendor/jquery/jquery.min.js"></script>
+<script src="../static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-      <!-- Bootstrap core JavaScript -->
-      <script src="../static/vendor/jquery/jquery.min.js"></script>
-      <script src="../static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Plugin JavaScript -->
+<script src="../static/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-      <!-- Plugin JavaScript -->
-      <script src="../static/vendor/jquery-easing/jquery.easing.min.js"></script>
+<!-- Custom scripts for this template -->
+<script src="../static/js/stylish-portfolio.min.js"></script>
+<script src="../static/js/login_form.js"></script>
 
-      <!-- Custom scripts for this template -->
-      <script src="../static/js/stylish-portfolio.min.js"></script>
-      <script src="../static/js/login_form.js"></script>
+<script>
+    $(document).ready(function () {
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
-      <script>
-        $(document).ready(function(){
-          var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-
-          $("#register").click(function(){
+        $("#register").click(function () {
             $.ajax({
-              type: "POST",
-              url: "/register/post",
-              data: {
-                _token: CSRF_TOKEN, 
-                username:$("#username").val(), 
-                email:$("#email").val(),
-                password:$("#password").val(),
-              },
-              success: function(result){
-                      alert("Registered successfully!");
-                        $("#register_form").hide();
-                      
-                    }
-              // dataType: dataType
-            });
-          });
-        });
-      </script>
-      
-    {% block scripts %}
-    {% endblock %}
+                type: "POST",
+                url: "/register/post",
+                data: {
+                    _token: CSRF_TOKEN,
+                    username: $("#username").val(),
+                    email: $("#email").val(),
+                    password: $("#password").val(),
+                },
+                success: function (result) {
+                    alert("Registered successfully!");
+                    $("#register_form").hide();
 
-  </body>
+                }
+                // dataType: dataType
+            });
+        });
+    });
+</script>
+
+{% block scripts %}
+{% endblock %}
+
+</body>
 
 </html>
