@@ -101,7 +101,7 @@ ENV/
 .mypy_cache/
 
 
-app/settings.py
+Code/settings.py
 
 databases
 *.db
