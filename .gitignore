@@ -109,4 +109,4 @@ databases
 /.idea/
 .idea/workspace.xml
 
-Code/settings.py
+settings.py
