@@ -19,6 +19,7 @@ class User(db.Model, UserMixin):
     def is_active(self):
         return True
 
+
 class Library(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100))
@@ -72,26 +73,26 @@ class LibrarieNet(db.Model):
 # 
 # 
 
-# class Carturesti(db.Model):
-#     __tablename__ = 'books_carturesti'
-#     book_id = db.Column(db.Integer, primary_key=True)
-#     title = db.Column(db.Unicode(100), nullable=False)
-#     author = db.Column(db.Unicode(100))
-#     isbn = db.Column(db.Unicode(50))
-#     link = db.Column(db.Unicode(100))
-#     editura = db.Column(db.Unicode(100))
-#     price = db.Column(db.Unicode(20))
+class Carturesti(db.Model):
+    __tablename__ = 'books_carturesti'
+    book_id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.Unicode(100), nullable=False)
+    author = db.Column(db.Unicode(100))
+    isbn = db.Column(db.Unicode(50))
+    link = db.Column(db.Unicode(100))
+    editura = db.Column(db.Unicode(100))
+    price = db.Column(db.Unicode(20))
 
-#     @property
-#     def serialize(self):
-#         return {
-#             'title': self.title,
-#             'author': self.author,
-#             'isbn': self.isbn,
-#             'editura': self.editura,
-#             'link': self.link,
-#             'price': self.price
-#         }
+    @property
+    def serialize(self):
+        return {
+            'title': self.title,
+            'author': self.author,
+            'isbn': self.isbn,
+            'editura': self.editura,
+            'link': self.link,
+            'price': self.price
+        }
 
 
 # CREATE TABLE books_librarie_small ( book_id INTEGER NOT NULL, title VARCHAR(100) NOT NULL,

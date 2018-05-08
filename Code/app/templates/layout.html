@@ -46,7 +46,20 @@
 
   </head>
 
+{% with messages = get_flashed_messages(with_categories=true) %}
+  <!-- Categories: success (green), info (blue), warning (yellow), danger (red) -->
+  {% if messages %}
+    {% for category, message in messages %}
+      <div class="alert alert-{{ category }} alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <!-- <strong>Title</strong> --> {{ message }}
+      </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
   <body id="page-top">
+
     <!-- Navigation -->
      <nav class="navbar-expand-lg bg-primary navbar-dark  fixed-top">
       <div class="container">
@@ -83,23 +96,34 @@
 
     <!-- Register Form -->
     <div id="register_form" class="modal">
-        <form class="modal-content animate add-top-space" action=" ">
+        <form class="modal-content animate add-top-space" action=" " method="post">
+          {{ registerform.hidden_tag() }}
             <div class="container-form">
-
+<!-- 
                 <label for="nume"><b>Nume</b></label>
                 <input type="text" placeholder="Introduceți numele" name="nume" required>
 
-                <label for="prenume"><b>Prenume</b></label>
-                <input type="text" placeholder="Introduceți Prenumele" name="prenume" required>
+            -->     <!-- <label for="prenume"><b>Prenume</b></label> -->
+                <!-- <input type="text" placeholder="Introduceți Prenumele" name="prenume" required> -->
+                <label for="username"><b>Username</b></label>
+
+              {{ registerform.username }}
+
 
                 <label for="email"><b>Email</b></label>
-                <input type="text" placeholder="Introduceți email-ul" name="email" required>
+              {{ registerform.email }}
+
+                <!-- <input type="text" placeholder="Introduceți email-ul" name="email" required> -->
 
                 <label for="parola"><b>Parolă</b></label>
-                <input type="password" placeholder="Introduceți Parola" name="parola" required>
+                <!-- <input type="password" placeholder="Introduceți Parola" name="parola" required> -->
+              {{ registerform.password }}
 
                 <label for="confirmpassword"><b>Confirmare Parolă</b></label>
-                <input type="password" placeholder="Confirmă Parola" name="confirmpassword" required>
+                <!-- <input type="password" placeholder="Confirmă Parola" name="confirmpassword" required> -->
+                <!-- <input type="password" placeholder="Introduceți Parola" name="parola" required> -->
+
+              {{ registerform.confirm }}
 
                 <button type="submit">Înregistrare</button>
                 <label>

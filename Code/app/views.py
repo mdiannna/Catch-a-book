@@ -1,10 +1,11 @@
 from app import app, db
 from app import login_manager
-from flask import render_template, request, redirect, url_for, session
+from flask import render_template, request, redirect, url_for, session, flash
 from flask.ext.login import login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from app.models import User, Library, Book, BooksCarturesti, LibrarieNet, Librarie_Min
 import re
+from forms import RegistrationForm
 
 
 def addInitialLibraries():
@@ -51,6 +52,11 @@ def moveBooksDataFromTables():
 #   moveBooksDataFromTables()
 #   # return render_template("index.html", message=message)
 
+def registerUser(username, email, password):
+    user = User(username=username, email=email, password=password)
+    db.session.add(user)
+    db.session.commit()
+    print("User registered")
 
 @app.route('/', methods = ['GET', 'POST'])
 # @login_required
@@ -62,6 +68,13 @@ def index():
     manual_ISBN = None
 
     FILENAME = "ISBN1.jpg"
+
+    registerform = RegistrationForm(request.form)
+    if request.method == 'POST' and registerform.validate():
+        registerUser(registerform.username.data, registerform.email.data, registerform.password.data)
+        return render_template("index.html", message=message, registerform=registerform)
+
+
     if request.method == 'POST':
         #Read ISBN from input
         manual_ISBN=request.form.get('manualISBNinput', None)
@@ -87,8 +100,19 @@ def index():
             status = 'file uploaded successfully'
             return redirect('/ocr_ISBN/' + str(FILENAME))
 
-    return render_template("index.html", message=message)
+    return render_template("index.html", message=message, registerform=registerform)
 
+
+# @app.route('/register', methods=['GET', 'POST'])
+# def register():
+#     form = RegistrationForm(request.form)
+#     if request.method == 'POST' and form.validate():
+#         user = User(form.username.data, form.email.data,
+#                     form.password.data)
+#         db_session.add(user)
+#         flash('Thanks for registering')
+#         return redirect(url_for('login'))
+#     return render_template('register.html', form=form)
 
 
 
@@ -153,7 +177,7 @@ def ocr_isbn(filename):
 
     title = "No title found"
     author = "No author found"
-    
+
     if object_Carturesti:
         title = object_Carturesti.title
         author=object_Carturesti.author
