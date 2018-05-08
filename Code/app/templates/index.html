@@ -6,7 +6,8 @@
     <!-- Header -->
     <header class="masthead d-flex">
         <div class="container text-center my-auto">
-            <h1 class="mb-1 text-white outline-glow" style="font-family:Tangerine,Serif,serif; font-size: 120px">Catch-a-Book</h1>
+            <h1 class="mb-1 text-white outline-glow" style="font-family:Tangerine,Serif,serif; font-size: 120px">
+                Catch-a-Book</h1>
             <!--
         <h3 class="mb-5 text-white outline-glow">
           <em>{{message}}</em>
@@ -52,12 +53,10 @@
     </header>
 
     <!-- Call to Action -->
-    <section id ="instructions" class="content-section bg-primary text-white">
+    <section id="instructions" class="content-section bg-primary text-white">
         <div class="container">
-            <h2 class="mb-4"> Instrucțiuni de utilizare ISBN </h2>
-
-
-            <div class="row">
+            <h2 class="pb-5" style="font-family:'Open Sans',Serif,serif;text-align: center;font-size:50px;"> Instructiuni de utilizare ISBN </h2>
+            <div class="row col-sm-8" style="font-size: 17px ; font-family:'Open Sans',Serif,serif">
                 <p>Pentru a căuta o carte, cu ajutorul unei poze, urmează pașii de mai jos:</p>
                 <ol>
                     <li>Gasește ISBN-ul cărții (de obicei, pe ultima pagină sau pe ultima copertă)</li>
@@ -75,9 +74,13 @@
                     <li>Vezi lista de cărți :)</li>
                 </ol>
             </div>
-
+            <div class="col-sm-4">
+                <img src="../static/img/help.png" alt="helpic" class="img-help">
+            </div>
+        </div>
 
         </div>
+
     </section>
 
 {% endblock %}
