@@ -1,8 +1,8 @@
-db_path ="sqlite:////home/mdiannna/Catch-a-book/Code/database.db"
+db_path = "sqlite:///D:\\Documents\\Proiect-Catch-A-Book\\Code\\database.db"
 
 UPLOAD_FOLDER = 'static/files/uploads/'
 
-LANGUAGE = "eng" 
+LANGUAGE = "eng"
 
 RECOGNIZE_FOLDER = "static/files/recognized/"
 # RECOGNIZE_FOLDER = "recognized/"
