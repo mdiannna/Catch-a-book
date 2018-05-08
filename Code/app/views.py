@@ -3,87 +3,262 @@ from app import login_manager
 from flask import render_template, request, redirect, url_for, session
 from flask.ext.login import login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
-from app.models import User, Library, Book, BooksCarturesti, LibrarieNet
+from app.models import User, Library, Book, BooksCarturesti, LibrarieNet, Librarie_Min
+import re
 
 
 def addInitialLibraries():
-	carturesti = Library(id=1, name='Carturesti')
-	librarie_net = Library(id=2, name='Librarienet')
-	db.session.add(carturesti)
-	db.session.add(librarie_net)
-	db.session.commit()
+    carturesti = Library(id=1, name='Carturesti')
+    librarie_net = Library(id=2, name='Librarienet')
+    db.session.add(carturesti)
+    db.session.add(librarie_net)
+    db.session.commit()
 
 def moveBooksDataFromTables():
-	carturesti_books = BooksCarturesti.query.all()
-	for book in carturesti_books:
-		new_book = Book(title=book.title, 
-			author=book.author,
-			isbn=book.isbn,
-			link=book.link,
-			editura=book.editura,
-			price=book.price,
-			# img=book.img,
-			library_id=1) 
-		db.session.add(new_book)
-		db.session.commit()
+    carturesti_books = BooksCarturesti.query.all()
+    for book in carturesti_books:
+        new_book = Book(title=book.title, 
+            author=book.author,
+            isbn=book.isbn,
+            link=book.link,
+            editura=book.editura,
+            price=book.price,
+            # img=book.img,
+            library_id=1) 
+        db.session.add(new_book)
+        db.session.commit()
 
-	librarie_net_books = LibrarieNet.query.all()
-	for book in librarie_net_books:
-		new_book = Book(title=book.title, 
-			# author=book.author,
-			isbn=book.isbn,
-			link=book.link,
-			# editura=book.editura,
-			price=book.price,
-			img=book.img,
-			library_id=2) 
-		db.session.add(new_book)
-		db.session.commit()
+    librarie_net_books = LibrarieNet.query.all()
+    for book in librarie_net_books:
+        new_book = Book(title=book.title, 
+            # author=book.author,
+            isbn=book.isbn,
+            link=book.link,
+            # editura=book.editura,
+            price=book.price,
+            img=book.img,
+            library_id=2) 
+        db.session.add(new_book)
+        db.session.commit()
 
-	# print carturesti_books[0].title
+    # print carturesti_books[0].title
 
 # TODO: delete after finishing with the database
 # @app.route('/db')
 # def index():
-# 	message = "Hello"
-# 	addInitialLibraries()
-# 	moveBooksDataFromTables()
-#	# return render_template("index.html", message=message)
+#   message = "Hello"
+#   addInitialLibraries()
+#   moveBooksDataFromTables()
+#   # return render_template("index.html", message=message)
 
 
-@app.route('/')
+@app.route('/', methods = ['GET', 'POST'])
 # @login_required
 def index():
-	message = "Hello"
-	return render_template("index.html", message=message)
+    message = "Hello"
+
+    status = None
+    error = None
+    manual_ISBN = None
+
+    FILENAME = "ISBN1.jpg"
+    if request.method == 'POST':
+        #Read ISBN from input
+        manual_ISBN=request.form.get('manualISBNinput', None)
+        manual_ISBN=re.sub('[^0-9]','',manual_ISBN)
+        print manual_ISBN
+        if  manual_ISBN!="":
+            return redirect('/ocr_ISBN/' + manual_ISBN)
+        #ISBN OCR if no input
+        print "post here"
+        f = request.files['file']
+        if not allowed_file:
+            error = 'Error! File type not allowed'
+        elif not f:
+            error = 'Error! Please choose file'
+        if f and allowed_file(f.filename):
+            print "current folder:"
+            print os.path.dirname(os.path.abspath(__file__))
+
+            FILE_PATH = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)),app.config['UPLOAD_FOLDER'], FILENAME))
+            print FILE_PATH
+            f.save(FILE_PATH)
+            # f.save(UPLOAD_FOLDER + FILENAME);
+            status = 'file uploaded successfully'
+            return redirect('/ocr_ISBN/' + str(FILENAME))
+
+    return render_template("index.html", message=message)
+
+
+
+
+@app.route('/ocr_ISBN/<string:filename>', methods = ['GET', 'POST'])
+def ocr_isbn(filename):
+
+
+    status = None
+    error = None
+    manual_ISBN = None
+
+    FILENAME = "ISBN1.jpg"
+    if request.method == 'POST':
+        print "post here"
+        #Read ISBN from input
+        manual_ISBN=request.form.get('manualISBNinput2', None)
+        manual_ISBN=re.sub('[^0-9]','',manual_ISBN)
+        print manual_ISBN
+        if  manual_ISBN!="":
+            return redirect('/ocr_ISBN/' + manual_ISBN)
+
+        #ISBN OCR if no input
+
+        f = request.files['file']
+        if not allowed_file:
+            error = 'Error! File type not allowed'
+        elif not f:
+            error = 'Error! Please choose file'
+        if f and allowed_file(f.filename):
+            print "current folder:"
+            print os.path.dirname(os.path.abspath(__file__))
+
+            FILE_PATH = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)),app.config['UPLOAD_FOLDER'], FILENAME))
+            print FILE_PATH
+            f.save(FILE_PATH)
+            # f.save(UPLOAD_FOLDER + FILENAME);
+            status = 'file uploaded successfully'
+            return redirect('/ocr_ISBN/' + str(FILENAME))
+
+
+
+    error = None
+    if filename == "ISBN1.jpg":
+        ISBN = recognize_ISBN(filename);
+
+    if filename.isdigit():
+        ISBN = int(filename)
+
+    if ISBN == None:
+        error = "ISBN could not be detected properly"
+
+    ISBN = unicode(ISBN)
+    print "ISBN:", ISBN
+    # Price comparison
+    good_price = None
+    bad_price = None
+    object_Carturesti = BooksCarturesti.query.filter(BooksCarturesti.isbn==ISBN).first()
+    object_Librarie_Min = Librarie_Min.query.filter(Librarie_Min.isbn==ISBN).first()
+    
+    print object_Carturesti   
+    print object_Librarie_Min
+
+    title = "No title found"
+    author = "No author found"
+    
+    if object_Carturesti:
+        title = object_Carturesti.title
+        author=object_Carturesti.author
+    return render_template("search.html", title=title, author=author, isbn=ISBN)       
+
+
+
+def find_same_author_objects(author, initial_isbn):
+    object_Carturesti = BooksCarturesti.query.filter(BooksCarturesti.author==author, BooksCarturesti.isbn!=initial_isbn)
+    rec=[]
+    # Eliminare recomandari duplicate
+    for item in object_Carturesti:
+        if item not in rec:
+            rec.append(item)
+
+    if len(rec)>=1:
+        obj = Librarie_Min.query.filter(Librarie_Min.isbn==rec[0].isbn)
+        if obj.count()>=1:
+            if obj[0].price < rec[0].price:
+                rec[0].price = obj[0].price
+                rec[0].link = obj[0].link
+    if len(rec)>=2:
+        obj = Librarie_Min.query.filter(Librarie_Min.isbn==rec[1].isbn)
+        if obj.count()>=1:
+            if obj[0].price < rec[1].price:
+                rec[1].price = obj[0].price
+                rec[1].link = obj[0].link
+    if len(rec)>=3:
+        obj = Librarie_Min.query.filter(Librarie_Min.isbn==rec[2].isbn)
+        if obj.count()>=1:
+            if obj[0].price < rec[2].price:
+                rec[2].price = obj[0].price
+                rec[2].link = obj[0].link
+    if len(rec)>=4:
+        obj = Librarie_Min.query.filter(Librarie_Min.isbn==rec[3].isbn)
+        if obj.count()>=1:
+            if obj[0].price < rec[3].price:
+                rec[3].price = obj[0].price
+                rec[3].link = obj[0].link
+    return rec
+
+
+
+def get_recommended_image_links(rec):
+    rec_img=[]
+    if len(rec)>=1:
+        obj = Librarie_Min.query.filter(Librarie_Min.isbn==rec[0].isbn)
+        if obj.count()>=1:
+            rec_img.append(obj[0].img)
+        else:
+            rec_img.append(None)
+    if len(rec)>=2:
+        obj = Librarie_Min.query.filter(Librarie_Min.isbn==rec[1].isbn)
+        if obj.count()>=1:
+            rec_img.append(obj[0].img)
+        else:
+            rec_img.append(None)
+    if len(rec)>=3:
+        obj = Librarie_Min.query.filter(Librarie_Min.isbn==rec[2].isbn)
+        if obj.count()>=1:
+            rec_img.append(obj[0].img)
+        else:
+            rec_img.append(None)
+    if len(rec)>=4:
+        obj = Librarie_Min.query.filter(Librarie_Min.isbn==rec[3].isbn)
+        if obj.count()>=1:
+            rec_img.append(obj[0].img)
+        else:
+            rec_img.append(None)
+    return rec_img
+
+
+def allowed_file(filename):
+    ALLOWED_EXTENSIONS = app.config['ALLOWED_EXTENSIONS']
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
+
 
 
 @app.route('/recommended-books')
 @login_required
 def recommended_books():
-	return render_template("recommended_books.html")
+    return render_template("recommended_books.html")
 
 
 @app.route('/contact')
 def contact():
-	return render_template("contact.html")
+    return render_template("contact.html")
 
 
 @app.route('/about')
 def about():
-	return render_template("about.html")
+    return render_template("about.html")
 
 
 @app.route('/book-details')
 def book_details():
-	return render_template("book_details.html")
+    return render_template("book_details.html")
 
 
 @app.route('/my-profile')
 def my_profile():
-	return render_template("my_profile.html")
+    return render_template("my_profile.html")
 
 
 @app.route('/search-results')
 def search_results():
-	return render_template("search_results.html")
+    return render_template("search_results.html")
