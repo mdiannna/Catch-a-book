@@ -1,11 +1,22 @@
 from app import app, db
 from app import login_manager
-from flask import render_template, request, redirect, url_for, session, flash
+from flask import render_template, request, redirect, url_for, session, flash, Response, abort
+from urlparse import urlparse, urljoin
+
 from flask.ext.login import login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from app.models import User, Library, Book, BooksCarturesti, LibrarieNet, Librarie_Min
 import re
 from app.forms import RegistrationForm
+from functools import wraps
+
+@login_manager.user_loader
+def load_user(user_id):
+    try:
+        return User.query.get(user_id)
+    except:
+        return None
+
 
 def addInitialLibraries():
     carturesti = Library(id=1, name='Carturesti')
@@ -51,34 +62,79 @@ def moveBooksDataFromTables():
 #   moveBooksDataFromTables()
 #   # return render_template("index.html", message=message)
 
-# def registerUser(username, email, password):
-#     user = User(username=username, email=email, password=password)
-#     db.session.add(user)
-#     db.session.commit()
-#     #print("User registered")
 
-
-@app.route('/register/post', methods = ['GET', 'POST'])
+@app.route('/register', methods = ['GET', 'POST'])
 def registerUser():
-    # #print data
-    #print request
-    #print request.data
-    #print request.args
-    #print request.values
-    # data=request.data
-    # username = data.username
-    # email=data.email
-    # password=data.password
-    # user = User(username=username, email=email, password=password)
-    # db.session.add(user)
-    # db.session.commit()
-    #print("User registered")
+    if request.method == 'POST':
+        email    = request.values.get('email')
+        password = generate_password_hash(request.values.get('password'))
+
+    user = User(email=email, password=password)
+    db.session.add(user)
+    db.session.commit()
+    print("User registered")
     return redirect('/')
 
+
+
+# def is_safe_url(target):
+#     ref_url = urlparse(request.host_url)
+#     test_url = urlparse(urljoin(request.host_url, target))
+#     return test_url.scheme in ('http', 'https') and ref_url.netloc == test_url.netloc
+
+def redirect_back(endpoint, **values):
+    target = request.form['next']
+    if not target or not is_safe_url(target):
+        target = url_for(endpoint, **values)
+    return redirect(target)
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    # Here we use a class of some kind to represent and validate our
+    # client-side form data. For example, WTForms is a library that will
+    # handle this for us, and we use a custom LoginForm to validate.
+    # form = LoginForm()
+    if request.method=='POST':
+        email    = request.values.get('email')
+        password = request.values.get('password')
+        print email 
+
+        user = User.query.filter(User.email==email).first();
+        if check_password_hash(user.password, password):
+            login_user(user)
+
+            flash('Logged in successfully.')
+
+            next = request.args.get('next')
+            print request.path
+            # return redirect(request.path)
+            # return redirect_back('/')
+            return redirect('/')
+
+        else:
+            return abort(400)
+
+        # is_safe_url should check if the url is safe for redirects.
+        # See http://flask.pocoo.org/snippets/62/ for an example.
+        # if not is_safe_url(next):
+        #     return abort(400)
+
+        # return flask.redirect(next or flask.url_for('index'))
+    # next = request.args.get('next')
+    # return redirect(next or '/')
+
+@app.route("/logout")
+@login_required
+def logout():
+    logout_user()
+    return redirect('/')
+   
 
 @app.route('/', methods = ['GET', 'POST'])
 # @login_required
 def index():
+    print current_user.is_authenticated()
+
     message = "Hello"
 
     status = None
@@ -86,15 +142,6 @@ def index():
     manual_ISBN = None
 
     FILENAME = "ISBN1.jpg"
-
-#     registerform = RegistrationForm(request.form)
-#     if request.method == 'POST' and registerform.validate():
-
-# # requests.post('http://httpbin.org/post', data = {'key':'value'})
-
-
-#         registerUser(registerform.username.data, registerform.email.data, registerform.password.data)
-#         return render_template("index.html", message=message, registerform=registerform)
 
 
     if request.method == 'POST':
@@ -126,20 +173,8 @@ def index():
     return render_template("index.html", message=message)
 
 
-# @app.route('/register', methods=['GET', 'POST'])
-# def register():
-#     form = RegistrationForm(request.form)
-#     if request.method == 'POST' and form.validate():
-#         user = User(form.username.data, form.email.data,
-#                     form.password.data)
-#         db_session.add(user)
-#         flash('Thanks for registering')
-#         return redirect(url_for('login'))
-#     return render_template('register.html', form=form)
-
-
-
 @app.route('/ocr_ISBN/<string:filename>', methods = ['GET', 'POST'])
+@login_required
 def ocr_isbn(filename):
 
 

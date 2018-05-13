@@ -67,7 +67,7 @@
 <body id="page-top">
 
 <!-- Navigation -->
-<nav class="navbar-expand-lg bg-primary navbar-dark  fixed-top">
+<nav class="navbar-expand-lg bg-primary navbar-dark  fixed-top" id="nav">
     <div class="container">
         <a class="navbar-brand1" href="/">
             <img src="../static/img/logo.png" width="265" height="45" alt="">
@@ -84,19 +84,26 @@
                 <li class="nav-item">
                     <a class="nav-link text-bold" href="/contact" style="font-size:20px; ">Contact</a>
                 </li>
-                <li class="nav-item text-bold">
-                    <button class="nav-link" onclick="document.getElementById('register_form').style.display='block'"
-                            style="width:auto;font-size:20px; margin-top: 0.7rem ">Înregistrare
-                    </button>
-                </li>
-                <li class="nav-item text-bold">
-                    <button class="nav-link" onclick="document.getElementById('login_form').style.display='block'"
-                            style="width:auto;font-size:20px; margin-top: 0.7rem ">Autentificare
-                    </button>
-                </li>
+               
                 <li class="nav-item text-bold">
                     <a class="nav-link text-bold" href="/my-profile" style="font-size:20px; ">Profilul meu</a>
                 </li>
+                {% if current_user.is_authenticated() %}
+                    <li class="nav-item text-bold">
+                        <a class="nav-link text-bold" href="/logout" style="font-size:20px; ">Logout</a>
+                    </li>
+                {% else %}
+                     <li class="nav-item text-bold">
+                        <button class="nav-link register-nav-button" onclick="document.getElementById('register_form').style.display='block'"
+                                style="width:auto;font-size:20px; margin-top: 0.7rem ">Înregistrare
+                        </button>
+                    </li>
+                    <li class="nav-item text-bold">
+                        <button class="nav-link login-nav-button" onclick="document.getElementById('login_form').style.display='block'"
+                                style="width:auto;font-size:20px; margin-top: 0.7rem ">Autentificare
+                        </button>
+                    </li>
+                {% endif %}
             </ul>
         </div>
     </div>
@@ -115,28 +122,17 @@
 
         <div class="container-form">
 
-            <label for="nume" id="name"><b>Nume</b></label>
-            <input type="text" placeholder="Introduceți numele" name="nume" required>
+            <label for="email"><b>Email</b></label>
+            <input type="text" id="email" placeholder="Introduceți email-ul" name="email" required>
 
-            <label for="prenume"><b>Prenume</b></label>
-            <input type="text" placeholder="Introduceți Prenumele" name="prenume" required>
-
-            <label for="username" id="username"><b>Username</b></label>
-
-
-            <label for="email" id="email"><b>Email</b></label>
-
-            <input type="text" placeholder="Introduceți email-ul" name="email" required>
-
-            <label for="parola" id="password"><b>Parolă</b></label>
-            <input type="password" placeholder="Introduceți Parola" name="parola" required>
+            <label for="password"><b>Parolă</b></label>
+            <input type="password"  id="password" placeholder="Introduceți Parola" name="password" required>
 
 
             <label for="confirmpassword"><b>Confirmare Parolă</b></label>
-            <input type="password" placeholder="Confirmă Parola" name="confirmpassword" required>
-            <!-- <input type="password" placeholder="Introduceți Parola" name="parola" required> -->
+            <input type="password" id="confirmpassword" placeholder="Confirmă Parola" name="confirmpassword" required>
+            <p class="confirmpassworderror" id="confirmpassworderror" style="color:red"></p>
 
-            <!-- <button type="submit"  id="#register">Înregistrare</button> -->
             <button id="register">Înregistrare</button>
             <label>
                 <input type="checkbox" checked="checked" name="remember"> Păstrează-mă autentificat
@@ -154,15 +150,16 @@
 
 <!-- Login Form -->
 <div id="login_form" class="modal">
-    <form class="modal-content animate add-top-space" action=" ">
+    <!-- <form class="modal-content animate add-top-space" action=" "> -->
+    <div class="modal-content animate add-top-space" action=" ">
         <div class="container-form">
-            <label for="email"><b>Email</b></label>
-            <input type="text" placeholder="Introduceți Email-ul" name="email" required>
+            <label for="loginemail"><b>Email</b></label>
+            <input type="text" id="loginemail" placeholder="Introduceți Email-ul" name="loginemail" required>
 
-            <label for="parola"><b>Parolă</b></label>
-            <input type="password" placeholder="Introduceți Parola" name="parola" required>
+           <label for="loginpassword"><b>Parolă</b></label>
+            <input type="password"  id="loginpassword" placeholder="Introduceți Parola" name="loginpassword" required>
 
-            <button type="submit">Autentificare</button>
+            <button type="submit" id="login">Autentificare</button>
             <label>
                 <input type="checkbox" checked="checked" name="remember"> Păstrează-mă autentificat </label>
         </div>
@@ -172,7 +169,8 @@
             </button>
             <span class="psw">Forgot <a href="#">password</a>?</span>
         </div>
-    </form>
+    </div>
+    <!-- </form> -->
 </div>
 
 
@@ -220,21 +218,54 @@
 <script>
     $(document).ready(function () {
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        $("#confirmpassworderror").hide();
 
         $("#register").click(function () {
+            if($("#password").val() == $("#confirmpassword").val()) {
+                $.ajax({
+                    type: "POST",
+                    url: "/register",
+                    data: {
+                        _token: CSRF_TOKEN,
+                        email: $("#email").val(),
+                        password: $("#password").val(),
+                    },
+                    success: function (result) {
+                        alert("Registered successfully!");
+                        $("#register_form").hide();
+                        // Reload navbar
+                        $("#nav").load(location.href + " #nav");
+                    }
+                });
+            } else {
+                $("#confirmpassworderror").show();
+                $("#confirmpassworderror").text("Passwords do not match!");
+            }
+        });
+
+        $('.login-nav-button').click(function () {
+            $('#register_form').hide();
+        });
+
+        $('.register-nav-button').click(function () {
+            $('#login_form').hide();
+        });
+
+
+        $("#login").click(function () {
             $.ajax({
                 type: "POST",
-                url: "/register/post",
+                url: "/login",
                 data: {
                     _token: CSRF_TOKEN,
-                    username: $("#username").val(),
-                    email: $("#email").val(),
-                    password: $("#password").val(),
+                    email: $("#loginemail").val(),
+                    password: $("#loginpassword").val(),
                 },
                 success: function (result) {
-                    alert("Registered successfully!");
-                    $("#register_form").hide();
-
+                    alert("Logged in!");
+                    $("#login_form").hide();
+                    // Reload navbar
+                    $("#nav").load(location.href + " #nav");
                 }
                 // dataType: dataType
             });
