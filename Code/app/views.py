@@ -1,7 +1,6 @@
 from app import app, db
 from app import login_manager
 from flask import render_template, request, redirect, url_for, session, flash, Response, abort
-from urlparse import urlparse, urljoin
 
 from flask.ext.login import login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -97,7 +96,7 @@ def login():
     if request.method=='POST':
         email    = request.values.get('email')
         password = request.values.get('password')
-        print email 
+        #print email
 
         user = User.query.filter(User.email==email).first();
         if check_password_hash(user.password, password):
@@ -106,7 +105,7 @@ def login():
             flash('Logged in successfully.')
 
             next = request.args.get('next')
-            print request.path
+            #print request.path
             # return redirect(request.path)
             # return redirect_back('/')
             return redirect('/')
@@ -133,7 +132,7 @@ def logout():
 @app.route('/', methods = ['GET', 'POST'])
 # @login_required
 def index():
-    print current_user.is_authenticated()
+    #print current_user.is_authenticated()
 
     message = "Hello"
 
