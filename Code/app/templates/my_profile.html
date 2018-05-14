@@ -38,13 +38,13 @@
 
     <section class="bg-primary">
         <div class="container">
-            <h1> Istoric </h1>
+            <h1> Cărți căutate anterior: </h1>
             <hr>
             {% for book in books %}
-                <p>Titlu: {{ book.title }}</p>
-                <p>Autor: {{ book.author }}</p>
-                <p>Pret: {{ book.price }}</p>
-                <hr>
+                    <p>Titlu: {{ book.title }}</p>
+                    <p>Autor: {{ book.author }}</p>
+                    <p>Pret: {{ book.price }}</p>
+                    <hr>
             {% endfor %}
         </div>
 

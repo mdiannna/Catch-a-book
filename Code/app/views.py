@@ -266,18 +266,18 @@ def ocr_isbn(filename):
         search_result = object_Carturesti
 
     if search_result:
-        newBook = Book(
-                title=title,
-                author=author,
-                price=price,
-                library=library,
-                link=link
-            )
-        current_user.books.append(newBook)
+        # newBook = Book(
+        #         title=title,
+        #         author=author,
+        #         price=price,
+        #         library=library,
+        #         link=link
+        #     )
+        current_user.books.append(search_result)
         db.session.commit()
 
         recommended_books = Book.query.filter_by(author=search_result.author).all()
-        print recommended_books
+        # print recommended_books
     # else:
         # search_result.title = "-"
         # search_result.author = "-"
