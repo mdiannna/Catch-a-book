@@ -102,7 +102,7 @@ def login():
     if request.method=='POST':
         email    = request.values.get('email')
         password = request.values.get('password')
-        #print email
+        # print email
 
         user = User.query.filter(User.email==email).first();
         if check_password_hash(user.password, password):
@@ -175,7 +175,8 @@ def index():
             # f.save(UPLOAD_FOLDER + FILENAME);
             status = 'file uploaded successfully'
             print(status)
-            return redirect('/ocr_ISBN/' + str(FILENAME))
+            # return redirect('/ocr_ISBN/' + str(FILENAME))
+            return redirect('/ocr_ISBN/' + FILENAME.encode('utf-8'))
 
     # return render_template("index.html", message=message, registerform=registerform)
     return render_template("index.html", message=message)
@@ -216,7 +217,8 @@ def ocr_isbn(filename):
             f.save(FILE_PATH)
             # f.save(UPLOAD_FOLDER + FILENAME);
             status = 'file uploaded successfully'
-            return redirect('/ocr_ISBN/' + str(FILENAME))
+            # return redirect('/ocr_ISBN/' + str(FILENAME))
+            return redirect('/ocr_ISBN/' + FILENAME.encode('utf-8'))
 
 
 
@@ -231,6 +233,7 @@ def ocr_isbn(filename):
         error = "ISBN could not be detected properly"
 
     ISBN = str(ISBN)
+    # ISBN = ISBN.encode('utf-8')
     ##print "ISBN:", ISBN
     # Price comparison
     good_price = None
@@ -246,78 +249,46 @@ def ocr_isbn(filename):
 
     title = "-"
     author = "-"
+    price="-"
+    library="-"
+    link="-"
+
+    search_result = None
+    recommended_books=None
 
     if object_Carturesti:
         title = object_Carturesti.title
         author=object_Carturesti.author
-    return render_template("search.html", title=title, author=author, isbn=ISBN)       
+        price=object_Carturesti.price
+        library=object_Carturesti.library
+        link=object_Carturesti.link
+
+        search_result = object_Carturesti
+
+    if search_result:
+        newBook = Book(
+                title=title,
+                author=author,
+                price=price,
+                library=library,
+                link=link
+            )
+        current_user.books.append(newBook)
+        db.session.commit()
+
+        recommended_books = Book.query.filter_by(author=search_result.author).all()
+        print recommended_books
+    # else:
+        # search_result.title = "-"
+        # search_result.author = "-"
+        # search_result.price = 0
+        # search_result.library = "-"
+        # search_result.link = "-"
+    
+
+    return render_template("search.html", book=search_result, recommended_books=recommended_books)       
 
 
-
-def find_same_author_objects(author, initial_isbn):
-    # object_Carturesti = BooksCarturesti.query.filter(BooksCarturesti.author==author, BooksCarturesti.isbn!=initial_isbn)
-    object_Carturesti = Book.query.filter(Book.author==author, Book.isbn!=initial_isbn)
-    rec=[]
-    # Eliminare recomandari duplicate
-    for item in object_Carturesti:
-        if item not in rec:
-            rec.append(item)
-
-    if len(rec)>=1:
-        obj = Librarie_Min.query.filter(Librarie_Min.isbn==rec[0].isbn)
-        if obj.count()>=1:
-            if obj[0].price < rec[0].price:
-                rec[0].price = obj[0].price
-                rec[0].link = obj[0].link
-    if len(rec)>=2:
-        obj = Librarie_Min.query.filter(Librarie_Min.isbn==rec[1].isbn)
-        if obj.count()>=1:
-            if obj[0].price < rec[1].price:
-                rec[1].price = obj[0].price
-                rec[1].link = obj[0].link
-    if len(rec)>=3:
-        obj = Librarie_Min.query.filter(Librarie_Min.isbn==rec[2].isbn)
-        if obj.count()>=1:
-            if obj[0].price < rec[2].price:
-                rec[2].price = obj[0].price
-                rec[2].link = obj[0].link
-    if len(rec)>=4:
-        obj = Librarie_Min.query.filter(Librarie_Min.isbn==rec[3].isbn)
-        if obj.count()>=1:
-            if obj[0].price < rec[3].price:
-                rec[3].price = obj[0].price
-                rec[3].link = obj[0].link
-    return rec
-
-
-
-def get_recommended_image_links(rec):
-    rec_img=[]
-    if len(rec)>=1:
-        obj = Librarie_Min.query.filter(Librarie_Min.isbn==rec[0].isbn)
-        if obj.count()>=1:
-            rec_img.append(obj[0].img)
-        else:
-            rec_img.append(None)
-    if len(rec)>=2:
-        obj = Librarie_Min.query.filter(Librarie_Min.isbn==rec[1].isbn)
-        if obj.count()>=1:
-            rec_img.append(obj[0].img)
-        else:
-            rec_img.append(None)
-    if len(rec)>=3:
-        obj = Librarie_Min.query.filter(Librarie_Min.isbn==rec[2].isbn)
-        if obj.count()>=1:
-            rec_img.append(obj[0].img)
-        else:
-            rec_img.append(None)
-    if len(rec)>=4:
-        obj = Librarie_Min.query.filter(Librarie_Min.isbn==rec[3].isbn)
-        if obj.count()>=1:
-            rec_img.append(obj[0].img)
-        else:
-            rec_img.append(None)
-    return rec_img
 
 
 def allowed_file(filename):
@@ -351,6 +322,10 @@ def book_details():
 @app.route('/my-profile')
 def my_profile():
     email = current_user.email
-    return render_template("my_profile.html", email=email)
+    first_name = current_user.first_name
+    last_name = current_user.last_name
+
+    books = current_user.books
+    return render_template("my_profile.html", email=email, first_name=first_name, last_name=last_name, books=books)
 
 

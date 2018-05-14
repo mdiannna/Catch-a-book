@@ -21,8 +21,8 @@
                             </div>
                             <div class="col-sm-6 col-md-8 display-4">
 
-                                <h1>Nume: {{ name }}</h1>
-                                <h1>Prenume: {{ firstname }}</h1>
+                                <h1>Nume: {{ last_name }}</h1>
+                                <h1>Prenume: {{ first_name }}</h1>
                                 <br>
                                 <p>
                                     <i class="glyphicon glyphicon-envelope"></i> Email: {{ email }}
@@ -40,6 +40,12 @@
         <div class="container">
             <h1> Istoric </h1>
             <hr>
+            {% for book in books %}
+                <p>Titlu: {{ book.title }}</p>
+                <p>Autor: {{ book.author }}</p>
+                <p>Pret: {{ book.price }}</p>
+                <hr>
+            {% endfor %}
         </div>
 
     </section>

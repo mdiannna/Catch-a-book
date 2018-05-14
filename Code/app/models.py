@@ -3,6 +3,12 @@ from flask.ext.login import UserMixin
 from app import db
 
 
+
+books_users = db.Table('books_users',
+        db.Column('book_id', db.Integer, db.ForeignKey('books.id'), primary_key=True),
+        db.Column('user_id', db.Integer, db.ForeignKey('users.id'), primary_key=True)
+    )
+
 class User(db.Model, UserMixin):
     __tablename__ = "users"
     id            = db.Column(db.Integer, primary_key=True)
@@ -10,6 +16,8 @@ class User(db.Model, UserMixin):
     password      = db.Column(db.String(255))
     first_name    = db.Column(db.String(100))
     last_name     = db.Column(db.String(100))
+
+    books       = db.relationship("Book", secondary=books_users)
     
     def set_password(self, password):
         self.password = generate_password_hash(password)
@@ -42,12 +50,10 @@ class Book(db.Model):
     
     library_id    = db.Column(db.Integer, db.ForeignKey('libraries.id'), nullable=False)
     library       = db.relationship('Library', backref=db.backref('books', lazy=True))
+    
+    users       = db.relationship("User", secondary=books_users)
 
 
-BooksUsers = db.Table('books_users',
-        db.Column('book_id', db.Integer, db.ForeignKey('books.id'), primary_key=True),
-        db.Column('library_id', db.Integer, db.ForeignKey('libraries.id'), primary_key=True)
-    )
    
 
 

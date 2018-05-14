@@ -21,18 +21,25 @@
                     <form>
                         <div class="media">
                             <div class="media-left">
-                                {% if image_link %}
-                                    <img src={{ image_link }} style="width: 160px">
+                                {% if book.link %}
+                                    <img src={{ book.link }} style="width: 160px">
                                 {% else %}
                                     <img src="../static/img/book.png" style="width: 250px">
                                 {% endif %}
                             </div>
                             <div class="media-body">
                                 <br>
-                                <h3 class="media-heading">Titlu: {{ title }}</h3>
-                                <h4> Autorul cărții: {{ author }} </h4>
-                                <h4> Cel mai bun preț: {{ good_price }} lei</h4>
-                                <h4> Librăria: {{ librarie_good }} </h4>
+                                {% if book %}
+                                    <h3 class="media-heading">Titlu: {{ book.title }}</h3>
+                                    <h4> Autorul cărții: {{ book.author }} </h4>
+                                    <h4> Cel mai bun preț: {{ book.price }} lei</h4>
+                                    <h4> Librăria: {{ book.library.name}} </h4>
+                                {% else %}
+                                    <h3 class="media-heading">Titlu: -</h3>
+                                    <h4> Autorul cărții: - </h4>
+                                    <h4> Cel mai bun preț: - </h4>
+                                    <h4> Librăria: - </h4>
+                                {% endif %}
                             </div>
                         </div>
                         {% if bad_price %}
