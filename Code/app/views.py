@@ -233,7 +233,7 @@ def ocr_isbn(filename):
     ##print object_Librarie_Min
 
     title = "-"
-    # author = "-"
+    author = "-"
 
     if object_Carturesti:
         title = object_Carturesti.title
