@@ -69,10 +69,12 @@ def moveBooksDataFromTables():
 @app.route('/register', methods = ['GET', 'POST'])
 def registerUser():
     if request.method == 'POST':
-        email    = request.values.get('email')
-        password = generate_password_hash(request.values.get('password'))
+        email      = request.values.get('email')
+        first_name = request.values.get('first_name')
+        last_name  = request.values.get('last_name')
+        password   = generate_password_hash(request.values.get('password'))
 
-    user = User(email=email, password=password)
+    user = User(email=email, password=password, first_name=first_name, last_name=last_name)
     db.session.add(user)
     db.session.commit()
     print("User registered")
@@ -164,7 +166,7 @@ def index():
         elif not f:
             error = 'Error! Please choose file'
         if f and allowed_file(f.filename):
-            print "current folder:"
+            # print "current folder:"
             print os.path.dirname(os.path.abspath(__file__))
 
             FILE_PATH = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)),app.config['UPLOAD_FOLDER'], FILENAME))
