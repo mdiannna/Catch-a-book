@@ -2,3 +2,18 @@
 body {
 	margin-top: 40px;
 }
+
+.team-member{
+	width: 90%;
+}
+.team-member-name{
+	font-family:'Open Sans',Serif,serif;
+	font-size: 30px;
+	margin-left: 70px;
+	font-style: italic;
+}
+
+.team-member-title{
+	font-family:Tangerine,Serif,serif;
+	font-size: 80px;
+}

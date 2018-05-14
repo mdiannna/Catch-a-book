@@ -1,11 +1,47 @@
 {% extends "layout.html" %}
 {% block styles %}
-  <!-- Additional css here -->
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 {% endblock %}
 
 {% block content %}
-  <div class="container">
-    <h1>Profilul meu</h1>
-  </div>
+    <section>
+        <div class="container">
+            <br><br>
+            <h1>Profilul meu</h1>
+            <hr>
+            <div class="col-xs-12 text-center">
+                <div class="col-xs-12 col-sm-6 col-md-12">
+                    <div class="well well-sm">
+                        <div class="row">
+                            <div class="col-sm-6 col-md-4">
+                                <img src="../static/img/avatar.png" alt="" class="img-rounded img-responsive"
+                                     style="padding-top:15px; padding-left: 25px;"/>
+                            </div>
+                            <div class="col-sm-6 col-md-8 display-4">
+
+                                <h1>Utilizator: {{ username }}</h1>
+                                <br>
+                                <p>
+                                    <i class="glyphicon glyphicon-envelope"></i> Email: {{ email }}
+                                    <br/>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-primary">
+        <div class="container">
+            <h1> Istoric </h1>
+            <hr>
+        </div>
+
+    </section>
+
 {% endblock %}
 
