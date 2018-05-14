@@ -158,6 +158,7 @@
 
            <label for="loginpassword"><b>Parolă</b></label>
             <input type="password"  id="loginpassword" placeholder="Introduceți Parola" name="loginpassword" required>
+            <p class="loginerror" id="loginerror" style="color:red"></p>
 
             <button type="submit" id="login">Autentificare</button>
             <label>
@@ -238,8 +239,7 @@
                     }
                 });
             } else {
-                $("#confirmpassworderror").show();
-                $("#confirmpassworderror").text("Passwords do not match!");
+$("#confirmpassworderror").show();
             }
         });
 
@@ -266,6 +266,10 @@
                     $("#login_form").hide();
                     // Reload navbar
                     $("#nav").load(location.href + " #nav");
+                },
+                error: function (result) {
+                    $("#loginerror").show();
+                    $("#loginerror").text("Email and password do not match");
                 }
                 // dataType: dataType
             });

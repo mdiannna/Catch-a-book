@@ -1,7 +1,7 @@
 from app import app, db
 from app import login_manager
 from flask import render_template, request, redirect, url_for, session, flash, Response, abort
-from urlparse import urlparse, urljoin
+# from urlparse import urlparse, urljoin
 
 from flask.ext.login import login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -233,8 +233,8 @@ def ocr_isbn(filename):
     ##print object_Carturesti   
     ##print object_Librarie_Min
 
-    title = "No title found"
-    author = "No author found"
+    title = "-"
+    # author = "-"
 
     if object_Carturesti:
         title = object_Carturesti.title
