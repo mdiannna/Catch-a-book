@@ -337,6 +337,7 @@ def book_details():
 
 @app.route('/my-profile')
 def my_profile():
-    return render_template("my_profile.html")
+    email = current_user.email
+    return render_template("my_profile.html", email=email)
 
 
