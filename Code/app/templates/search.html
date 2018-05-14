@@ -5,9 +5,10 @@
 
 {% block content %}
 
-    <section class="content-section">
+    <section id="title-ISBN" class="bg-white">
         <div class="containter text-center">
-            <h4> ISBN-ul cautat este: {{ isbn }}</h4>
+            <h2> ISBN-ul căutat este: </h2>
+            <h2> {{ isbn }}</h2>
         </div>
     </section>
 
@@ -28,15 +29,15 @@
                             </div>
                             <div class="media-body">
                                 <br>
-                                <h4 class="media-heading">Titlu: {{ title }}</h4>
-                                <h5> Autorul cartii: {{ author }} </h5>
-                                <h5> Cel mai bun pret: {{ good_price }} lei</h5>
-                                <h5> Libraria: {{ librarie_good }} </h5>
+                                <h3 class="media-heading">Titlu: {{ title }}</h3>
+                                <h4> Autorul cărții: {{ author }} </h4>
+                                <h4> Cel mai bun preț: {{ good_price }} lei</h4>
+                                <h4> Librăria: {{ librarie_good }} </h4>
                             </div>
                         </div>
                         {% if bad_price %}
-                            <h5> Al doilea pret: {{ bad_price }} lei</h5>
-                            <h5> A doua librarie: {{ librarie_bad }} </h5>
+                            <h4> Al doilea preț: {{ bad_price }} lei</h4>
+                            <h4> A doua librărie: {{ librarie_bad }} </h4>
                         {% endif %}
                     </form>
                 </div>
@@ -44,10 +45,13 @@
         </div>
     </section>
 
-    <section id="recommended_books" class="content-section bg-white text-center">
+    <section id="recommended_books" class="bg-white text-center">
         <div class="container">
             <div class="row">
-                <h1>Lista cartilor recomandate</h1>
+                <div class="col-lg-12 text-center">
+                    <h2>Lista cărților recomandate</h2>
+                    <hr>
+                </div>
             </div>
 
         </div>
