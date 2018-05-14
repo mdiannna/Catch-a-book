@@ -1,11 +1,37 @@
 {% extends "layout.html" %}
 {% block styles %}
-  <!-- Additional css here -->
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 {% endblock %}
 
 {% block content %}
-  <div class="container">
-    <h1>Profilul meu</h1>
-  </div>
+    <div class="container">
+        <br><br>
+        <h1>Profilul meu</h1>
+        <hr>
+        <div class="col-xs-12 text-center">
+            <div class="col-xs-12 col-sm-6 col-md-12">
+                <div class="well well-sm">
+                    <div class="row">
+                        <div class="col-sm-6 col-md-4">
+                            <img src="../static/img/profile.png" alt="" class="img-rounded img-responsive"
+                                 style="max-width: 75%"/>
+                        </div>
+                        <div class="col-sm-6 col-md-8 display-4">
+                            <h1>Mike Bennet</h1>
+                            <br>
+                            <i class="glyphicon glyphicon-map-marker"> San Francisco, USA</i>
+                            <p>
+                                <i class="glyphicon glyphicon-envelope"></i> email@example.com
+                                <br/>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}
 
