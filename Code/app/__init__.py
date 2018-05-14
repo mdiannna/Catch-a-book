@@ -4,14 +4,13 @@ from flask.ext.script import Manager
 from flask.ext.migrate import Migrate, MigrateCommand
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.login import LoginManager
-from settings import db_path
+from settings import db_path, UPLOAD_FOLDER
 
 
 app = Flask(__name__)
 app.secret_key = "secret"
 
 
-UPLOAD_FOLDER = 'static/files/uploaded/'
 # This is the path to the upload directory
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 # These are the extension that we are accepting to be uploaded

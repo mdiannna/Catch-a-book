@@ -4,7 +4,8 @@ from flask import render_template, request, redirect, url_for, session, flash, R
 
 from flask.ext.login import login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
-from app.models import User, Library, Book, BooksCarturesti, LibrarieNet, Librarie_Min
+# from app.models import User, Library, Book, BooksCarturesti, LibrarieNet, Librarie_Min
+from app.models import User, Library, Book
 import re
 from app.forms import RegistrationForm
 from functools import wraps
@@ -27,7 +28,8 @@ def addInitialLibraries():
     db.session.commit()
 
 def moveBooksDataFromTables():
-    carturesti_books = BooksCarturesti.query.all()
+    # carturesti_books = BooksCarturesti.query.all()
+    carturesti_books = Book.query.all()
     for book in carturesti_books:
         new_book = Book(title=book.title, 
             author=book.author,
@@ -231,8 +233,11 @@ def ocr_isbn(filename):
     # Price comparison
     good_price = None
     bad_price = None
-    object_Carturesti = BooksCarturesti.query.filter(BooksCarturesti.isbn==ISBN).first()
-    object_Librarie_Min = Librarie_Min.query.filter(Librarie_Min.isbn==ISBN).first()
+    
+    # object_Carturesti = BooksCarturesti.query.filter(BooksCarturesti.isbn==ISBN).first()
+    object_Carturesti = Book.query.filter(Book.isbn==ISBN).first()
+    # object_Librarie_Min = Librarie_Min.query.filter(Librarie_Min.isbn==ISBN).first()
+    object_Librarie_Min = Book.query.filter(Book.isbn==ISBN).first()
     
     ##print object_Carturesti   
     ##print object_Librarie_Min
@@ -248,7 +253,8 @@ def ocr_isbn(filename):
 
 
 def find_same_author_objects(author, initial_isbn):
-    object_Carturesti = BooksCarturesti.query.filter(BooksCarturesti.author==author, BooksCarturesti.isbn!=initial_isbn)
+    # object_Carturesti = BooksCarturesti.query.filter(BooksCarturesti.author==author, BooksCarturesti.isbn!=initial_isbn)
+    object_Carturesti = Book.query.filter(Book.author==author, Book.isbn!=initial_isbn)
     rec=[]
     # Eliminare recomandari duplicate
     for item in object_Carturesti:

@@ -122,10 +122,10 @@
 
         <div class="container-form">
             <label for="name"><b>Nume</b></label>
-            <input type="text" id="name" placeholder="Introduceți Numele" name="name" required>
+            <input type="text" id="last_name" placeholder="Introduceți Numele" name="last_name" required>
 
             <label for="firstname"><b>Prenume</b></label>
-            <input type="text" id="firstname" placeholder="Introduceți Prenumele" name="firstname" required>
+            <input type="text" id="first_name" placeholder="Introduceți Prenumele" name="first_name" required>
 
             <label for="email"><b>Email</b></label>
             <input type="text" id="email" placeholder="Introduceți Email-ul" name="email" required>
@@ -235,6 +235,8 @@
                         _token: CSRF_TOKEN,
                         email: $("#email").val(),
                         password: $("#password").val(),
+                        first_name: $("#first_name").val(),
+                        last_name: $("#last_name").val()
                     },
                     success: function (result) {
                         alert("Registered successfully!");
