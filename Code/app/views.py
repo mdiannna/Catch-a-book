@@ -173,7 +173,7 @@ def index():
 
 
 @app.route('/ocr_ISBN/<string:filename>', methods = ['GET', 'POST'])
-@login_required
+# @login_required
 def ocr_isbn(filename):
 
 
