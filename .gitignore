@@ -111,3 +111,4 @@ databases
 /.idea/workspace.xml
 
 settings.py
+/Code/app/static/files/

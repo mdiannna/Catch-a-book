@@ -8,6 +8,8 @@ from app.models import User, Library, Book, BooksCarturesti, LibrarieNet, Librar
 import re
 from app.forms import RegistrationForm
 from functools import wraps
+import os
+from ocr import recognize_ISBN
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -147,25 +149,28 @@ def index():
         #Read ISBN from input
         manual_ISBN=request.form.get('manualISBNinput', None)
         manual_ISBN=re.sub('[^0-9]','',manual_ISBN)
-        ##print manual_ISBN
+
+        print(manual_ISBN)
         if  manual_ISBN!="":
             return redirect('/ocr_ISBN/' + manual_ISBN)
         #ISBN OCR if no input
         ##print "post here"
         f = request.files['file']
+        print(f)
         if not allowed_file:
             error = 'Error! File type not allowed'
         elif not f:
             error = 'Error! Please choose file'
         if f and allowed_file(f.filename):
-            ##print "current folder:"
-            ##print os.path.dirname(os.path.abspath(__file__))
+            print "current folder:"
+            print os.path.dirname(os.path.abspath(__file__))
 
             FILE_PATH = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)),app.config['UPLOAD_FOLDER'], FILENAME))
             ##print FILE_PATH
             f.save(FILE_PATH)
             # f.save(UPLOAD_FOLDER + FILENAME);
             status = 'file uploaded successfully'
+            print(status)
             return redirect('/ocr_ISBN/' + str(FILENAME))
 
     # return render_template("index.html", message=message, registerform=registerform)

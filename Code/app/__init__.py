@@ -11,11 +11,11 @@ app = Flask(__name__)
 app.secret_key = "secret"
 
 
-UPLOAD_FOLDER = 'app/static/files/uploaded/'
+UPLOAD_FOLDER = 'static/files/uploaded/'
 # This is the path to the upload directory
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 # These are the extension that we are accepting to be uploaded
-app.config['ALLOWED_EXTENSIONS'] = set(['png', 'PNG', 'gif', 'png', 'PNG'])
+app.config['ALLOWED_EXTENSIONS'] = set(['png', 'PNG', 'gif', 'png', 'PNG', 'jpg', 'jpeg', 'JPG', 'JPEG'])
 
 
 # os.getenv('DATABASE_URL', 'sqlite:///app.sqlite')
