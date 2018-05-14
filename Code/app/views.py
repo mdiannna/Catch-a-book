@@ -81,25 +81,16 @@ def registerUser():
     return redirect('/')
 
 
-
-# def is_safe_url(target):
-#     ref_url = urlparse(request.host_url)
-#     test_url = urlparse(urljoin(request.host_url, target))
-#     return test_url.scheme in ('http', 'https') and ref_url.netloc == test_url.netloc
-
 def redirect_back(endpoint, **values):
     target = request.form['next']
     if not target or not is_safe_url(target):
         target = url_for(endpoint, **values)
     return redirect(target)
 
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    # Here we use a class of some kind to represent and validate our
-    # client-side form data. For example, WTForms is a library that will
-    # handle this for us, and we use a custom LoginForm to validate.
-    # form = LoginForm()
-    if request.method=='POST':
+  if request.method=='POST':
         email    = request.values.get('email')
         password = request.values.get('password')
         # print email
@@ -234,18 +225,10 @@ def ocr_isbn(filename):
 
     ISBN = str(ISBN)
     # ISBN = ISBN.encode('utf-8')
-    ##print "ISBN:", ISBN
-    # Price comparison
-    good_price = None
-    bad_price = None
-    
-    # object_Carturesti = BooksCarturesti.query.filter(BooksCarturesti.isbn==ISBN).first()
-    object_Carturesti = Book.query.filter(Book.isbn==ISBN).first()
-    # object_Librarie_Min = Librarie_Min.query.filter(Librarie_Min.isbn==ISBN).first()
-    object_Librarie_Min = Book.query.filter(Book.isbn==ISBN).first()
-    
-    ##print object_Carturesti   
-    ##print object_Librarie_Min
+   
+    # book = BooksCarturesti.query.filter(BooksCarturesti.isbn==ISBN).first()
+    book = Book.query.filter(Book.isbn==ISBN).first()
+   
 
     title = "-"
     author = "-"
@@ -256,14 +239,14 @@ def ocr_isbn(filename):
     search_result = None
     recommended_books=None
 
-    if object_Carturesti:
-        title = object_Carturesti.title
-        author=object_Carturesti.author
-        price=object_Carturesti.price
-        library=object_Carturesti.library
-        link=object_Carturesti.link
+    if book:
+        title = book.title
+        author=book.author
+        price=book.price
+        library=book.library
+        link=book.link
 
-        search_result = object_Carturesti
+        search_result = book
 
     if search_result:
         # newBook = Book(
