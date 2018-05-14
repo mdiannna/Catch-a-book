@@ -52,11 +52,21 @@
         </div>
     </section>
 
+    {% if recommended_books|length > 0 %}
     <section id="recommended_books" class="bg-white text-center">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <h2>Lista cărților recomandate</h2>
+                    {% for book in recommended_books %}
+                        <p>titlu: {{book.title}}</p>
+                        <p>autor: {{book.author}}</p>
+                        <p>pret: {{book.price}}</p>
+                        <p>link: {{book.link}}</p>
+                        <p>editura: {{book.publisher}}</p>
+                        <p>librarie: {{book.library.name}}</p>
+                        <hr>
+                    {% endfor %}
                     <hr>
                 </div>
             </div>
@@ -64,6 +74,7 @@
         </div>
 
     </section>
+    {% endif%}
 
 
 {% endblock %}
