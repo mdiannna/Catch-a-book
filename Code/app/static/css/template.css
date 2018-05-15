@@ -20,10 +20,14 @@ body {
 
 #title-ISBN{
   padding-top: 3rem;
-  padding-bottom: 3rem;
+  padding-bottom: 1rem;
 }
 
 #recommended_books{
 	padding-top: 3rem;
   	padding-bottom: 3rem;
+}
+
+.recomandate{
+	display: inline-block;
 }

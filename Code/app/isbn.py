@@ -1,11 +1,11 @@
 
 def filter_raw_ISBN(raw_text):
 	isbn = ""
-	print "raw_isbn:", raw_text
+	print ("raw_isbn:", raw_text)
 	for i in raw_text:
 		if i.isdigit():
 			isbn += i
-	print "isbn adter filtering:", isbn
+	print ("isbn adter filtering:", isbn)
 	return isbn
 
 

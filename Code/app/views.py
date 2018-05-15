@@ -10,7 +10,7 @@ import re
 from app.forms import RegistrationForm
 from functools import wraps
 import os
-from ocr import recognize_ISBN
+from app.ocr import recognize_ISBN
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -158,7 +158,7 @@ def index():
             error = 'Error! Please choose file'
         if f and allowed_file(f.filename):
             # print "current folder:"
-            print os.path.dirname(os.path.abspath(__file__))
+            #print os.path.dirname(os.path.abspath(__file__))
 
             FILE_PATH = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)),app.config['UPLOAD_FOLDER'], FILENAME))
             ##print FILE_PATH
@@ -233,7 +233,7 @@ def ocr_isbn(filename):
     books = Book.query.filter(Book.isbn==ISBN).order_by('price').paginate(1, 2, False).items
     if len(books) > 0:
         book = books[0]
-        print book.price
+        #print book.price
     if len(books) > 1:
         book_second_price = books[1]
 
@@ -255,8 +255,8 @@ def ocr_isbn(filename):
 
         search_result = book
         
-        # recommended_books = Book.query.filter_by(author=book.author).all()
-        print recommended_books
+        recommended_books = Book.query.filter_by(author=book.author).all()
+        print (recommended_books)
 
     if search_result and current_user.is_authenticated():
         # newBook = Book(

@@ -1,11 +1,11 @@
 # TODO: pip install Pillow
-import PIL.Image 
+#import PIL.Image
 # Daca nu merge PIL.image, incearca urmatoarea varianta:
 # import Image 
 # TODO: pip install pytesseract
-import pytesseract 
+#import pytesseract
 from settings import LANGUAGE, UPLOAD_FOLDER, RECOGNIZE_FOLDER, IMG_NAME
-import isbn
+import app.isbn
 import os
 from app import app
 
@@ -28,9 +28,9 @@ def raw_recognize():
 	file_name = file_name.replace(".gif",  ".txt")
 	file_name = file_name.replace(".jpeg", ".txt")
 
-	print path_in
+	print (path_in)
 	recog_text = pytesseract.image_to_string(PIL.Image.open(path_in), lang=language)
-	print "recognized text:", recog_text
+	print ("recognized text:", recog_text)
 	print_to_file(path_out, file_name, recog_text)
 	return recog_text
 
