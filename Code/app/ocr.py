@@ -1,12 +1,12 @@
 # TODO: pip install Pillow
-import PIL.Image
+#import PIL.Image
 # Daca nu merge PIL.image, incearca urmatoarea varianta:
 # import Image 
 # TODO: pip install pytesseract
-import pytesseract
+#import pytesseract
 from settings import LANGUAGE, UPLOAD_FOLDER, RECOGNIZE_FOLDER, IMG_NAME
 # import app.isbn
-import isbn
+import app.isbn
 import os
 from app import app
 

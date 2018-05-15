@@ -25,9 +25,11 @@
                                     <img src="{{ book.img }}" style="max-width: 160px" class="img img-responsive">
                                 {% else %}
                                     {% if book_second_price.img %}
-                                        <img src="{{ book_second_price.img }}" style="max-width: 160px" class="img img-responsive">
+                                        <img src="{{ book_second_price.img }}" style="max-width: 160px"
+                                             class="img img-responsive">
                                     {% else %}
-                                        <img src="../static/img/book.png" style="max-width: 250px" class="img img-responsive">
+                                        <img src="../static/img/book.png" style="max-width: 250px"
+                                             class="img img-responsive">
                                     {% endif %}
                                 {% endif %}
                             </div>
@@ -36,41 +38,39 @@
                                     <h3 class="media-heading"><b>Titlu: {{ book.title }} </b></h3>
                                     <h4> Autorul cărții: {{ book.author }} </h4>
                                     <div class="col-md-6">
-                                    <h4> Cel mai bun preț: {{ book.price }} lei</h4>
-                                    {% if book.publisher %}
-                                        <h4> Editura: {{ book.publisher }} </h4>
-                                    {% endif %}
-                                    {% if book.library %}
-                                        <h4> Librăria: {{ book.library.name }} </h4>
-                                    {% endif %}
-                                    {% if book.link %}
-                                        <h4> Link:
-                                            <a target="_blank" href="{{ book.link }}" class="white-link">
-                                                {{ book.link }}
-                                            </a>
-                                        </h4>
-                                    {% endif %}
-                                {% else %}
-                                    <h3 class="media-heading">Nu am găsit nici o carte cu acest ISBN</h3>
-                                    <!--                                     <h4> Autorul cărții: - </h4>
-                                                                        <h4> Cel mai bun preț: - </h4>
-                                                                        <h4> Librăria: - </h4> -->
-                                {% endif %}
-                                </div>
-                                <div class="col-md-6">
-                                    {% if book_second_price %}
-                                        <h4> Al doilea preț: {{ book_second_price.price }} lei</h4>
-                                        <h4> Librărie: {{ book_second_price.library.name }} </h4>
-                                         {% if book_second_price.link %}
-                                        <h4> Link:
-                                            <a target="_blank" href="{{ book_second_price.link }}" class="white-link">
-                                                {{ book_second_price.link }}
-                                            </a>
-                                        </h4>
+                                        <h4> Cel mai bun preț: {{ book.price }} lei</h4>
+                                        {% if book.publisher %}
+                                            <h4> Editura: {{ book.publisher }} </h4>
                                         {% endif %}
-                                    {% endif %}
-                                       
-                                </div>
+                                        {% if book.library %}
+                                            <h4> Librăria: {{ book.library.name }} </h4>
+                                        {% endif %}
+                                        {% if book.link %}
+                                            <h4> Link:
+                                                <a target="_blank" href="{{ book.link }}" class="white-link">
+                                                    {{ book.link }}
+                                                </a>
+                                            </h4>
+                                        {% endif %}
+                                    </div>
+                                    <div class="col-md-6">
+                                        {% if book_second_price %}
+                                            <h4> Al doilea preț: {{ book_second_price.price }} lei</h4>
+                                            <h4> Librărie: {{ book_second_price.library.name }} </h4>
+                                            {% if book_second_price.link %}
+                                                <h4> Link:
+                                                    <a target="_blank" href="{{ book_second_price.link }}"
+                                                       class="white-link">
+                                                        {{ book_second_price.link }}
+                                                    </a>
+                                                </h4>
+                                            {% endif %}
+                                        {% endif %}
+                                    </div>
+                                {% else %}
+                                    <br> <br>
+                                    <h3 class="media-heading"><b>Nu am găsit nici o carte cu acest ISBN</b></h3>
+                                {% endif %}
                             </div>
                         </div>
                         <a target="_blank" href="/" class="btn btn-default">Caută o altă carte</a>
@@ -83,20 +83,20 @@
 
     <section id="recommended_books" class="bg-white">
         <div class="container">
+            {% if recommended_books %}
                 <h2 class="text-center">Lista cărților recomandate</h2>
                 <hr>
-            {% if recommended_books %}
                 <div style="width: 100%">
                     <hr>
                     {% for book in recommended_books %}
                         <div class="col-sm-4 col-md-4 col-lg-4">
                             <div class="media">
                                 <div class="media-left">
-                                <br>
-                                <br>
+                                    <br>
+                                    <br>
                                     {% if book.img %}
                                         <img src="{{ book.img }}" style="width: 150px">
-                                        {% else %}
+                                    {% else %}
                                         <img src="../static/img/open-book.png" style="width: 150px">
                                     {% endif %}
                                 </div>
@@ -105,7 +105,7 @@
                                     <p>autor: {{ book.author }}</p>
                                     <p>isbn: {{ book.isbn }}</p>
                                     <p>pret: {{ book.price }}</p>
-                                    <p>link: <a target="_blank" href="{{ book.link }}"> {{book.link}} </a></p>
+                                    <p>link: <a target="_blank" href="{{ book.link }}"> {{ book.link }} </a></p>
                                     <p>editura: {{ book.publisher }}</p>
                                     <p>librarie: {{ book.library.name }}</p>
                                     <hr>
@@ -114,11 +114,10 @@
                         </div>
                     {% endfor %}
                 </div>
-
-                </div>
-
-                </section>
             {% endif %}
+        </div>
+    </section>
+
 
 
 {% endblock %}
