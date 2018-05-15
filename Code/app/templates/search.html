@@ -68,33 +68,44 @@
         </div>
     </section>
 
-    {% if recommended_books %}
-        <section id="recommended_books" class="bg-white">
-            <div class="container">
-                        <h2 class="text-center">Lista cărților recomandate</h2>
 
+    <section id="recommended_books" class="bg-white">
+        <div class="container">
+                <h2 class="text-center">Lista cărților recomandate</h2>
+                <hr>
+            {% if recommended_books %}
                 <div class="row">
-                        <hr>
-                        {% for book in recommended_books %}
-                            <div class="col-sm-4 col-md-4 col-lg-4">
+                    <hr>
+                    {% for book in recommended_books %}
+                        <div class="col-sm-4 col-md-4 col-lg-4">
+                            <div class="media">
+                                <div class="media-left">
+                                <br>
+                                <br>
                                     {% if book.img %}
-                                            <img src = "{{ book.img }}" style="width: 250px">
+                                        <img src="{{ book.img }}" style="width: 150px">
+                                        {% else %}
+                                        <img src="../static/img/open-book.png" style="width: 150px">
                                     {% endif %}
-                                <p>titlu: {{ book.title }}</p>
-                                <p>autor: {{ book.author }}</p>
-                                <p>pret: {{ book.price }}</p>
-                                <p>link: {{ book.link }}</p>
-                                <p>editura: {{ book.publisher }}</p>
-                                <p>librarie: {{ book.library.name }}</p>
-                                <hr>
+                                </div>
+                                <div class="media-body recomandate">
+                                    <p><b>titlu: {{ book.title }}</b></p>
+                                    <p>autor: {{ book.author }}</p>
+                                    <p>pret: {{ book.price }}</p>
+                                    <p>link: {{ book.link }}</p>
+                                    <p>editura: {{ book.publisher }}</p>
+                                    <p>librarie: {{ book.library.name }}</p>
+                                    <hr>
+                                </div>
                             </div>
-                        {% endfor %}
+                        </div>
+                    {% endfor %}
                 </div>
 
-            </div>
+                </div>
 
-        </section>
-    {% endif %}
+                </section>
+            {% endif %}
 
 
 {% endblock %}
