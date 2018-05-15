@@ -41,10 +41,21 @@
             <h1> Cărți căutate anterior: </h1>
             <hr>
             {% for book in books %}
-                    <p>Titlu: {{ book.title }}</p>
-                    <p>Autor: {{ book.author }}</p>
-                    <p>Pret: {{ book.price }}</p>
-                    <hr>
+                <div class="media">
+                    <div class="media-left">
+                        {% if book.img %}
+                            <img src="{{ book.img }}" style="width: 160px">
+                        {% else %}
+                            <img src="../static/img/open-book.png" style="width: 160px">
+                        {% endif %}
+                    </div>
+                    <div class="media-body profilul-meu">
+                        <p><b>Titlu: {{ book.title }}</b></p>
+                        <p>Autor: {{ book.author }}</p>
+                        <p>Pret: {{ book.price }}</p>
+                    </div>
+                </div>
+                <hr>
             {% endfor %}
         </div>
 
