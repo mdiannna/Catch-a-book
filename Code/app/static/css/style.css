@@ -61,3 +61,12 @@ body {
     max-height: 120%;
 
 }
+
+
+.white-link {
+    color: #222;
+}
+
+.white-link:hover {
+    color: white;
+}

@@ -43,9 +43,9 @@
                                     {% if book.library %}
                                         <h4> Librăria: {{ book.library.name }} </h4>
                                     {% endif %}
-                                    {% if link %}
+                                    {% if book.link %}
                                         <h4> Link:
-                                            <a href="{{ book.link }}">
+                                            <a href="{{ book.link }}" class="white-link">
                                                 {{ book.link }}
                                             </a>
                                         </h4>
@@ -61,11 +61,19 @@
                                     {% if book_second_price %}
                                         <h4> Al doilea preț: {{ book_second_price.price }} lei</h4>
                                         <h4> Librărie: {{ book_second_price.library.name }} </h4>
-                                        <h4> Link: {{ book_second_price.link }} </h4>
+                                         {% if book_second_price.link %}
+                                        <h4> Link:
+                                            <a href="{{ book_second_price.link }}" class="white-link">
+                                                {{ book_second_price.link }}
+                                            </a>
+                                        </h4>
+                                        {% endif %}
                                     {% endif %}
+                                       
                                 </div>
                             </div>
                         </div>
+                        <a href="/" class="btn btn-default">Caută o altă carte</a>
                     </form>
                 </div>
             </div>
@@ -78,7 +86,7 @@
                 <h2 class="text-center">Lista cărților recomandate</h2>
                 <hr>
             {% if recommended_books %}
-                <div class="row">
+                <div style="width: 100%">
                     <hr>
                     {% for book in recommended_books %}
                         <div class="col-sm-4 col-md-4 col-lg-4">
@@ -95,8 +103,9 @@
                                 <div class="media-body recomandate">
                                     <p><b>titlu: {{ book.title }}</b></p>
                                     <p>autor: {{ book.author }}</p>
+                                    <p>isbn: {{ book.isbn }}</p>
                                     <p>pret: {{ book.price }}</p>
-                                    <p>link: {{ book.link }}</p>
+                                    <p>link: <a href="{{ book.link }}"> {{book.link}} </a></p>
                                     <p>editura: {{ book.publisher }}</p>
                                     <p>librarie: {{ book.library.name }}</p>
                                     <hr>

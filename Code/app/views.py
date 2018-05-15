@@ -11,6 +11,7 @@ from app.forms import RegistrationForm
 from functools import wraps
 import os
 from app.ocr import recognize_ISBN
+import random
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -255,7 +256,20 @@ def ocr_isbn(filename):
 
         search_result = book
         
-        recommended_books = Book.query.filter_by(author=book.author).all()
+        libraries = Library.query.all()
+        library_ids = []
+
+        for library in libraries:
+            library_ids.append(library.id)
+
+        # print (library_ids)
+        # print (random.choice(library_ids))
+
+        recommended_books = Book.query.filter_by(author=book.author, library_id=random.choice(library_ids) ).all()
+        if not recommended_books:
+            recommended_books = Book.query.filter_by(author=book.author, library_id=random.choice(library_ids) ).all()
+
+        # recommended_books_ids
         # print (recommended_books)
 
     if search_result and current_user.is_authenticated():
