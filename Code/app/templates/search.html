@@ -17,7 +17,7 @@
         <div class="container">
             <br><br>
             <div class="row">
-                <div class="col-lg-12 text-center">
+                <v class="col-lg-12 text-center">
                     <form>
                         <div class="media">
                             <div class="media-left">
@@ -46,24 +46,25 @@
                                             <h4> Librăria: {{ book.library.name }} </h4>
                                         {% endif %}
                                         {% if book.link %}
-                                            <h4> Link:
+                                            <h5> Link:
                                                 <a target="_blank" href="{{ book.link }}" class="white-link">
                                                     {{ book.link }}
                                                 </a>
-                                            </h4>
+                                            </h5>
                                         {% endif %}
                                     </div>
                                     <div class="col-md-6">
                                         {% if book_second_price %}
+                                            <br>
                                             <h4> Al doilea preț: {{ book_second_price.price }} lei</h4>
                                             <h4> Librărie: {{ book_second_price.library.name }} </h4>
                                             {% if book_second_price.link %}
-                                                <h4> Link:
+                                                <h5> Link:
                                                     <a target="_blank" href="{{ book_second_price.link }}"
                                                        class="white-link">
                                                         {{ book_second_price.link }}
                                                     </a>
-                                                </h4>
+                                                </h5>
                                             {% endif %}
                                         {% endif %}
                                     </div>
@@ -73,7 +74,10 @@
                                 {% endif %}
                             </div>
                         </div>
+                    <br>
+                    <div class="buton-cautare">
                         <a target="_blank" href="/" class="btn btn-default">Caută o altă carte</a>
+                    </div>
                     </form>
                 </div>
             </div>
@@ -87,7 +91,6 @@
                 <h2 class="text-center">Lista cărților recomandate</h2>
                 <hr>
                 <div style="width: 100%">
-                    <hr>
                     {% for book in recommended_books %}
                         <div class="col-sm-4 col-md-4 col-lg-4">
                             <div class="media">
