@@ -256,7 +256,7 @@ def ocr_isbn(filename):
         search_result = book
         
         recommended_books = Book.query.filter_by(author=book.author).all()
-        print (recommended_books)
+        # print (recommended_books)
 
     if search_result and current_user.is_authenticated():
         # newBook = Book(
@@ -278,7 +278,7 @@ def ocr_isbn(filename):
         # search_result.link = "-"
     
 
-    return render_template("search.html", book=search_result, recommended_books=recommended_books, book_second_price=book_second_price)       
+    return render_template("search.html", book=search_result, recommended_books=recommended_books, book_second_price=book_second_price, isbn=ISBN)       
 
 
 

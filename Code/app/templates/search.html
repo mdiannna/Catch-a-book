@@ -21,10 +21,14 @@
                     <form>
                         <div class="media">
                             <div class="media-left">
-                                {% if book.link %}
-                                    <img src={{ book.link }} style="width: 160px">
+                                {% if book.img %}
+                                    <img src="{{ book.img }}" style="max-width: 160px" class="img img-responsive">
                                 {% else %}
-                                    <img src="../static/img/book.png" style="width: 250px">
+                                    {% if book_second_price.img %}
+                                        <img src="{{ book_second_price.img }}" style="max-width: 160px" class="img img-responsive">
+                                    {% else %}
+                                        <img src="../static/img/book.png" style="max-width: 250px" class="img img-responsive">
+                                    {% endif %}
                                 {% endif %}
                             </div>
                             <div class="media-body">
