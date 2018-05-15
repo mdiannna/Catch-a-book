@@ -33,18 +33,31 @@
                                     <h3 class="media-heading">Titlu: {{ book.title }}</h3>
                                     <h4> Autorul cărții: {{ book.author }} </h4>
                                     <h4> Cel mai bun preț: {{ book.price }} lei</h4>
-                                    <h4> Librăria: {{ book.library.name}} </h4>
+                                    {% if book.publisher %}
+                                        <h4> Editura: {{ book.publisher}} </h4>
+                                    {% endif %}
+                                    {% if book.library %}
+                                        <h4> Librăria: {{ book.library.name}} </h4>
+                                    {% endif %}
+                                    {% if link %}
+                                    <h4> Link: 
+                                        <a href="{{ book.link}}"> 
+                                            {{ book.link }} 
+                                        </a> 
+                                    </h4>
+                                    {% endif %}
                                 {% else %}
-                                    <h3 class="media-heading">Titlu: -</h3>
-                                    <h4> Autorul cărții: - </h4>
+                                    <h3 class="media-heading">Nu am găsit nici o carte cu acest ISBN</h3>
+<!--                                     <h4> Autorul cărții: - </h4>
                                     <h4> Cel mai bun preț: - </h4>
-                                    <h4> Librăria: - </h4>
+                                    <h4> Librăria: - </h4> -->
                                 {% endif %}
                             </div>
                         </div>
-                        {% if bad_price %}
-                            <h4> Al doilea preț: {{ bad_price }} lei</h4>
-                            <h4> A doua librărie: {{ librarie_bad }} </h4>
+                        {% if book_second_price %}
+                            <h4> Al doilea preț: {{ book_second_price.price }} lei</h4>
+                            <h4> Librărie: {{ book_second_price.library.name}} </h4>
+                            <h4> Link: {{ book_second_price.link }} </h4>
                         {% endif %}
                     </form>
                 </div>

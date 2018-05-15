@@ -225,10 +225,17 @@ def ocr_isbn(filename):
 
     ISBN = str(ISBN)
     # ISBN = ISBN.encode('utf-8')
-   
+    
+    book = None
+    book_second_price = None
+    
     # book = BooksCarturesti.query.filter(BooksCarturesti.isbn==ISBN).first()
-    book = Book.query.filter(Book.isbn==ISBN).first()
-   
+    books = Book.query.filter(Book.isbn==ISBN).order_by('price').paginate(1, 2, False).items
+    if len(books) > 0:
+        book = books[0]
+        print book.price
+    if len(books) > 1:
+        book_second_price = books[1]
 
     title = "-"
     author = "-"
@@ -247,8 +254,11 @@ def ocr_isbn(filename):
         link=book.link
 
         search_result = book
+        
+        # recommended_books = Book.query.filter_by(author=book.author).all()
+        print recommended_books
 
-    if search_result:
+    if search_result and current_user.is_authenticated():
         # newBook = Book(
         #         title=title,
         #         author=author,
@@ -259,8 +269,7 @@ def ocr_isbn(filename):
         current_user.books.append(search_result)
         db.session.commit()
 
-        recommended_books = Book.query.filter_by(author=search_result.author).all()
-        # print recommended_books
+        
     # else:
         # search_result.title = "-"
         # search_result.author = "-"
@@ -269,7 +278,7 @@ def ocr_isbn(filename):
         # search_result.link = "-"
     
 
-    return render_template("search.html", book=search_result, recommended_books=recommended_books)       
+    return render_template("search.html", book=search_result, recommended_books=recommended_books, book_second_price=book_second_price)       
 
 
 
