@@ -45,7 +45,7 @@
                                     {% endif %}
                                     {% if book.link %}
                                         <h4> Link:
-                                            <a href="{{ book.link }}" class="white-link">
+                                            <a target="_blank" href="{{ book.link }}" class="white-link">
                                                 {{ book.link }}
                                             </a>
                                         </h4>
@@ -63,7 +63,7 @@
                                         <h4> Librărie: {{ book_second_price.library.name }} </h4>
                                          {% if book_second_price.link %}
                                         <h4> Link:
-                                            <a href="{{ book_second_price.link }}" class="white-link">
+                                            <a target="_blank" href="{{ book_second_price.link }}" class="white-link">
                                                 {{ book_second_price.link }}
                                             </a>
                                         </h4>
@@ -73,7 +73,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="/" class="btn btn-default">Caută o altă carte</a>
+                        <a target="_blank" href="/" class="btn btn-default">Caută o altă carte</a>
                     </form>
                 </div>
             </div>
@@ -105,7 +105,7 @@
                                     <p>autor: {{ book.author }}</p>
                                     <p>isbn: {{ book.isbn }}</p>
                                     <p>pret: {{ book.price }}</p>
-                                    <p>link: <a href="{{ book.link }}"> {{book.link}} </a></p>
+                                    <p>link: <a target="_blank" href="{{ book.link }}"> {{book.link}} </a></p>
                                     <p>editura: {{ book.publisher }}</p>
                                     <p>librarie: {{ book.library.name }}</p>
                                     <hr>

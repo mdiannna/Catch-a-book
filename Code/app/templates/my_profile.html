@@ -52,7 +52,15 @@
                     <div class="media-body profilul-meu">
                         <p><b>Titlu: {{ book.title }}</b></p>
                         <p>Autor: {{ book.author }}</p>
-                        <p>Pret: {{ book.price }}</p>
+                        <p>ISBN: {{ book.isbn }}</p>
+                        <p>Pret: {{ book.price }} lei</p>
+                         {% if book.link %}
+                                        <p> Link:
+                                            <a href="{{ book.link }}" class="white-link">
+                                                {{ book.link }}
+                                            </a>
+                                        </p>
+                                    {% endif %}
                     </div>
                 </div>
                 <hr>
