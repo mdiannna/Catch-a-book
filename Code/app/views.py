@@ -304,11 +304,6 @@ def allowed_file(filename):
 
 
 
-@app.route('/recommended-books')
-@login_required
-def recommended_books():
-    return render_template("recommended_books.html")
-
 
 @app.route('/contact')
 def contact():
@@ -318,11 +313,6 @@ def contact():
 @app.route('/about')
 def about():
     return render_template("about.html")
-
-
-@app.route('/book-details')
-def book_details():
-    return render_template("book_details.html")
 
 
 @app.route('/my-profile')
